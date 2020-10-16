@@ -33,7 +33,7 @@ const Header = (props) => {
         style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
         onClick={() => history.push("/")}
       >
-        <img width={38} src={Logo} />
+        <img draggable={false} width={38} src={Logo} />
         {matches && (
           <>
             <Spacer x={0.8} />

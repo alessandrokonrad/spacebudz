@@ -2,10 +2,8 @@ import React from "react";
 import "./LaunchButton.scss";
 import charming from "charming";
 import Spaceship from "../../assets/spaceship.svg";
-import { useHistory } from "react-router-dom";
 
 const LaunchButton = (props) => {
-  const history = useHistory();
   React.useEffect(() => {
     const d = 40;
 
@@ -32,7 +30,7 @@ const LaunchButton = (props) => {
         elem.classList.toggle("live");
         setTimeout(() => {
           elem.classList.remove("animated");
-          history.push("/browse");
+          props.onClick();
         }, 1600);
       });
     });
@@ -40,14 +38,14 @@ const LaunchButton = (props) => {
   return (
     <React.Fragment>
       {" "}
-      <a href="" class="rocket-button" style={{ padding: "16px 30px" }}>
-        <div class="default">Browse Collectibles</div>
+      <a href="" className="rocket-button" style={{ padding: "16px 30px" }}>
+        <div className="default">Browse Collectibles</div>
 
-        <div class="animation">
-          <div class="rocket">
+        <div className="animation">
+          <div className="rocket">
             <img width={30} src={Spaceship}></img>
           </div>
-          <div class="smoke">
+          <div className="smoke">
             <i></i>
             <i></i>
             <i></i>

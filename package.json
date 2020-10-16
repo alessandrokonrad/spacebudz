@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@egjs/react-infinitegrid": "^3.0.5",
     "@geist-ui/react": "^2.1.0-canary.0",
     "@mdi/js": "^5.7.55",
     "@mdi/react": "^1.4.0",
@@ -14,6 +15,9 @@
     "node-sass": "^4.14.1",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+    "react-infinite-scroll-component": "^5.1.0",
+    "react-lazyload": "^3.0.0",
+    "react-reveal": "^1.2.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3"
   },

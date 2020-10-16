@@ -1,13 +1,15 @@
 import React from "react";
-import { Button, LaunchButton } from "../components/Button";
-import { mdiRocketOutline } from "@mdi/js";
-import Icon from "@mdi/react";
+import { LaunchButton } from "../components/Button";
+import { useHistory } from "react-router-dom";
 
 //assets
 import Background from "../assets/landing.svg";
-import { Spacer } from "@geist-ui/react";
+import { Spacer, useMediaQuery } from "@geist-ui/react";
 
 const Landing = (props) => {
+  const history = useHistory();
+  const matches = useMediaQuery("md", { match: "up" });
+
   return (
     <div
       style={{
@@ -22,10 +24,12 @@ const Landing = (props) => {
         }}
       >
         <div style={{ marginTop: 100, display: "flex" }}>
-          <>
-            <img width={800} src={Background} />
-            <Spacer x={5} />
-          </>
+          {matches && (
+            <>
+              <img width={800} src={Background} />
+              <Spacer x={5} />
+            </>
+          )}
           <div>
             <div style={{ fontSize: 28, fontWeight: 700, textAlign: "center" }}>
               SpaceBudz - An interactive NFT game
@@ -35,7 +39,7 @@ const Landing = (props) => {
               that a reader will be distracted by the readable content of a page
             </div>
             <Spacer y={2.5} />
-            <LaunchButton />
+            <LaunchButton onClick={() => history.push("/browse")} />
           </div>
         </div>
       </div>
