@@ -1,4 +1,4 @@
 import Landing from "./Landing";
-import Home from "./Home";
+import Browse from "./Browse";
 
-export { Landing, Home };
+export { Landing, Browse };

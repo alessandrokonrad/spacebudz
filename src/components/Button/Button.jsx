@@ -1,6 +1,6 @@
 import React from "react";
 import { Button as ZButton } from "@geist-ui/react";
-import style from "./button.module.css";
+import style from "./Button.module.css";
 
 const Button = (props) => {
   return (

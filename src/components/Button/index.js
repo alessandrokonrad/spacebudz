@@ -1,3 +1,4 @@
-import Button from "./button";
+import Button from "./Button";
+import LaunchButton from "./LaunchButton";
 
-export default Button;
+export { Button, LaunchButton };
