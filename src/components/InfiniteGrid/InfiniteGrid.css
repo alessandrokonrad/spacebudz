@@ -2,11 +2,16 @@
   width: 130px;
   opacity: 1;
   cursor: pointer;
+  animation-duration: 1s;
+  animation-name: fadeIn;
 }
 .itemGrid .thumbnail {
-  max-height: 300px;
-  overflow: hidden;
-  border-radius: 8px;
+  height: 130px;
+  background: #9fa8da;
+  border-radius: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .itemGrid .thumbnail img {
   width: 100%;
@@ -14,7 +19,7 @@
 }
 
 .itemGrid:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 .itemGrid .info {
@@ -35,4 +40,16 @@
   line-height: 50px;
   text-align: center;
   font-weight: bold;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
 }

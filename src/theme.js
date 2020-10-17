@@ -1,6 +1,6 @@
 const theme = {
   palette: {
-    success: "#283593",
+    success: "#4a148c",
   },
 };
 

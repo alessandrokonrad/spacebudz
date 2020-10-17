@@ -1,34 +1,54 @@
 import React from "react";
 import { GridLayout } from "@egjs/react-infinitegrid";
+// import Fade from "react-reveal/Fade";
+import Fade from "react-fade-in";
 import "./InfiniteGrid.css";
+import Coin from "../../assets/coin.png";
+import { Loading } from "@geist-ui/react";
 
-const Item = ({ num }) => (
+const Item = ({ num, array }) => (
   <div className="itemGrid">
     <div className="thumbnail">
-      <img src={`https://picsum.photos/1000/1000?random=${num}`} alt="egjs" />
+      <img
+        src={`https://picsum.photos/1000/1000?random=${array[num]}`}
+        alt="egjs"
+      />
     </div>
-    <div className="info">{`SpaceBud #${num}`}</div>
+    <div className="info">{`SpaceBud #${array[num]}`}</div>
   </div>
 );
 
 class InfiniteGrid extends React.Component {
   state = { list: [] };
+  start = 0;
   loadItems(groupKey, num) {
     const items = [];
     const start = this.start || 0;
 
     for (let i = 0; i < num; ++i) {
       items.push(
-        <Item groupKey={groupKey} num={1 + start + i} key={start + i}></Item>
+        <Item
+          groupKey={groupKey}
+          num={start + i}
+          key={start + i}
+          array={this.props.array}
+        />
       );
     }
     this.start = start + num;
     return items;
   }
   onAppend = ({ groupKey, startLoading }) => {
+    if (this.state.list.length >= this.props.array.length) return;
     startLoading();
+
+    const loadVolume =
+      this.props.array.length - this.start <= 10
+        ? this.props.array.length - this.start
+        : 10;
+
     const list = this.state.list;
-    const items = this.loadItems((parseFloat(groupKey) || 0) + 1, 10);
+    const items = this.loadItems((parseFloat(groupKey) || 0) + 1, loadVolume);
 
     this.setState({ list: list.concat(items) });
   };
@@ -36,17 +56,18 @@ class InfiniteGrid extends React.Component {
     !isLayout && endLoading();
   };
   render() {
-    console.log(this.state.list);
+    // console.log(this.state.list);
     return (
       <GridLayout
         options={{
+          useRecycle: false,
           isConstantSize: true,
-          transitionDuration: 0.2,
         }}
         layoutOptions={{
           margin: 40,
           align: "center",
         }}
+        loading={<Loading size="large" type="success" />}
         onAppend={this.onAppend}
         onLayoutComplete={this.onLayoutComplete}
       >

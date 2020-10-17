@@ -7,9 +7,10 @@ import {
   mdiTwitter,
   mdiTelegram,
 } from "@mdi/js";
-import { Spacer, Popover, Link, Button, useMediaQuery } from "@geist-ui/react";
+import { Spacer, Popover, Link, useMediaQuery } from "@geist-ui/react";
 import Icon from "@mdi/react";
 import { useHistory } from "react-router-dom";
+import { StartButton } from "../Account";
 
 //assets
 import Logo from "../../assets/logo.svg";
@@ -20,6 +21,7 @@ const Header = (props) => {
 
   return (
     <div
+      id="header"
       style={{
         margin: matches ? "0 100px" : "0 15px",
         height: "90px",
@@ -55,7 +57,7 @@ const Header = (props) => {
           menu={
             <>
               <Popover.Item style={{ cursor: "pointer" }}>
-                <span>How to Play</span>
+                <span>How It Works</span>
               </Popover.Item>
               <Popover.Item line />
               <Popover.Item style={{ cursor: "pointer" }}>
@@ -106,9 +108,7 @@ const Header = (props) => {
           More
         </Tab>
         <Spacer x={1.5} />
-        <Button size={!matches && "small"} type="success" effect={false} auto>
-          Start
-        </Button>
+        <StartButton />
       </div>
     </div>
   );
