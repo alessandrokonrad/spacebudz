@@ -14,6 +14,7 @@ const Landing = (props) => {
     <div
       style={{
         width: "100%",
+        minHeight: "100vh",
       }}
     >
       <div
@@ -39,7 +40,12 @@ const Landing = (props) => {
               that a reader will be distracted by the readable content of a page
             </div>
             <Spacer y={2.5} />
-            <LaunchButton onClick={() => history.push("/browse")} />
+            <LaunchButton
+              onClick={() => {
+                history.push("/browse");
+                window.scrollTo(0, 0);
+              }}
+            />
           </div>
         </div>
       </div>

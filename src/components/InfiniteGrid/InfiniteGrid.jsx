@@ -1,20 +1,21 @@
 import React from "react";
 import { GridLayout } from "@egjs/react-infinitegrid";
-// import Fade from "react-reveal/Fade";
-import Fade from "react-fade-in";
 import "./InfiniteGrid.css";
 import Coin from "../../assets/coin.png";
 import { Loading } from "@geist-ui/react";
+import { Link } from "react-router-dom";
 
 const Item = ({ num, array }) => (
   <div className="itemGrid">
-    <div className="thumbnail">
-      <img
-        src={`https://picsum.photos/1000/1000?random=${array[num]}`}
-        alt="egjs"
-      />
-    </div>
-    <div className="info">{`SpaceBud #${array[num]}`}</div>
+    <Link to={`/browse/spacebud/${array[num]}`}>
+      <div className="thumbnail">
+        <img
+          src={`https://picsum.photos/1000/1000?random=${array[num]}`}
+          alt="egjs"
+        />
+      </div>
+      <div className="info">{`SpaceBud #${array[num]}`}</div>
+    </Link>
   </div>
 );
 

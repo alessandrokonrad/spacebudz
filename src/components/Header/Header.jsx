@@ -33,7 +33,10 @@ const Header = (props) => {
       {/* Logo */}
       <div
         style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
-        onClick={() => history.push("/")}
+        onClick={() => {
+          history.push("/");
+          window.scrollTo(0, 0);
+        }}
       >
         <img draggable={false} width={38} src={Logo} />
         {matches && (
@@ -50,7 +53,15 @@ const Header = (props) => {
 
       {/* Right Side */}
       <div style={{ display: "flex", alignItems: "center" }}>
-        <Tab icon={mdiRocketOutline}>Browse</Tab>
+        <Tab
+          icon={mdiRocketOutline}
+          onClick={() => {
+            history.push("/browse");
+            window.scrollTo(0, 0);
+          }}
+        >
+          Browse
+        </Tab>
         <Spacer x={1.2} />
         <Tab
           icon={mdiBookOpenOutline}
