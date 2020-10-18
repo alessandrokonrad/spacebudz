@@ -13,7 +13,7 @@ import { useHistory } from "react-router-dom";
 import { StartButton } from "../Account";
 
 //assets
-import Logo from "../../assets/logo.svg";
+import Logo from "../../assets/logo1.svg";
 
 const Header = (props) => {
   const history = useHistory();
@@ -24,7 +24,7 @@ const Header = (props) => {
       id="header"
       style={{
         margin: matches ? "0 100px" : "0 15px",
-        height: "90px",
+        height: "100px",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
@@ -38,12 +38,16 @@ const Header = (props) => {
           window.scrollTo(0, 0);
         }}
       >
-        <img draggable={false} width={38} src={Logo} />
+        <img draggable={false} width={matches ? 55 : 45} src={Logo} />
         {matches && (
           <>
             <Spacer x={0.8} />
             <span
-              style={{ fontFamily: "'Days One', sans-serif", fontSize: 20 }}
+              style={{
+                fontFamily: "'Bowlby One SC', cursive",
+                fontSize: 30,
+                color: "#311b92",
+              }}
             >
               SpaceBudz
             </span>
