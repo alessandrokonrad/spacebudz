@@ -44,8 +44,8 @@ const Header = (props) => {
             <Spacer x={0.8} />
             <span
               style={{
-                fontFamily: "'Bowlby One SC', cursive",
-                fontSize: 30,
+                fontFamily: "'Heebo', sans-serif",
+                fontSize: 28,
                 color: "#311b92",
               }}
             >
