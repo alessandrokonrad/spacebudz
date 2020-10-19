@@ -7,7 +7,6 @@ const Search = (props) => {
   const [searchId, setSearchId] = React.useState("");
   return (
     <Input
-      // iconRight={<Icon path={mdiMagnify} size={1} />}
       placeholder="Search"
       value={searchId}
       onChange={(e) => {

@@ -27,7 +27,15 @@ const Landing = (props) => {
         <div style={{ marginTop: 100, display: "flex" }}>
           {matches && (
             <>
-              <img width={800} src={Background} />
+              <img
+                width={1300}
+                style={{
+                  position: "absolute",
+                  right: 0,
+                  top: 0,
+                }}
+                src={Background}
+              />
               <Spacer x={5} />
             </>
           )}

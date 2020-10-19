@@ -57,7 +57,6 @@ class InfiniteGrid extends React.Component {
     !isLayout && endLoading();
   };
   render() {
-    // console.log(this.state.list);
     return (
       <GridLayout
         options={{

@@ -8,14 +8,14 @@
 .itemGrid .thumbnail {
   height: 130px;
   background: #9fa8da;
-  border-radius: 200px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .itemGrid .thumbnail img {
   width: 100%;
-  border-radius: 200px;
+  border-radius: 50%;
 }
 
 .itemGrid:hover {

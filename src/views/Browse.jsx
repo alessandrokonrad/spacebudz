@@ -3,6 +3,7 @@ import Headroom from "react-headroom";
 import { Search } from "../components/Filter";
 import InfiniteGrid from "../components/InfiniteGrid";
 import { SpaceBud } from ".";
+import { Checkbox, Spacer } from "@geist-ui/react";
 
 const array = [...Array(300).keys()];
 
@@ -73,11 +74,30 @@ const Browse = (props) => {
             </div>
           </div>
         </Headroom>
-
+        <div>
+          <Spacer y={0.8} />
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div>
+              <b style={{ fontSize: 16 }}>Total SpaceBudz:</b> 1000
+            </div>
+            <Spacer x={1} />
+            <div>
+              <Checkbox>
+                <b style={{ fontSize: 16 }}>On Sale</b>
+              </Checkbox>
+            </div>
+          </div>
+        </div>
+        <Spacer y={3} />
         <div
           style={{
             position: !showGrid && "fixed",
-            marginTop: 80,
             marginBottom: 100,
           }}
         >

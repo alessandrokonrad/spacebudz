@@ -13,7 +13,7 @@ import { useHistory } from "react-router-dom";
 import { StartButton } from "../Account";
 
 //assets
-import Logo from "../../assets/logo1.svg";
+import Logo from "../../assets/logo3.svg";
 
 const Header = (props) => {
   const history = useHistory();
@@ -56,7 +56,17 @@ const Header = (props) => {
       </div>
 
       {/* Right Side */}
-      <div style={{ display: "flex", alignItems: "center" }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          zIndex: 1,
+          background: "white",
+          borderRadius: "40px",
+          padding: matches && "10px 40px",
+          marginRight: matches && -20,
+        }}
+      >
         <Tab
           icon={mdiRocketOutline}
           onClick={() => {
