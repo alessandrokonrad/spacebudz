@@ -1,4 +1,4 @@
-import { Button, Spacer } from "@geist-ui/react";
+import { Button, Image, Spacer } from "@geist-ui/react";
 import { mdiShare, mdiShareVariant, mdiShareVariantOutline } from "@mdi/js";
 import Icon from "@mdi/react";
 import React from "react";
@@ -19,7 +19,7 @@ const SpaceBud = (props) => {
       id,
       attributes: { helmet: true, weapon: true },
       type: "Ape",
-      image: `https://picsum.photos/1000/1000?random=${id}`,
+      image: `/set3/sample${id}.svg`,
     };
     setData(data);
   };
@@ -58,7 +58,7 @@ const SpaceBud = (props) => {
           size={1.2}
           style={{ position: "absolute", left: 25, top: 25, cursor: "pointer" }}
         ></Icon>
-        <img width={300} style={{ borderRadius: "50%" }} src={Sample} />
+        <img width={300} height={300} src={data.image} />
         <Spacer y={1} />
         <div style={{ fontWeight: 600, fontSize: 30 }}>SpaceBud #{data.id}</div>
         Ape Astronaut

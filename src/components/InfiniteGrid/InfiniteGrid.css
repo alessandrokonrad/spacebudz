@@ -1,13 +1,13 @@
 .itemGrid {
-  width: 130px;
+  width: 180px;
   opacity: 1;
   cursor: pointer;
   animation-duration: 1s;
   animation-name: fadeIn;
 }
 .itemGrid .thumbnail {
-  height: 130px;
-  background: #9fa8da;
+  height: 180px;
+  /* background: #9fa8da; */
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -15,7 +15,7 @@
 }
 .itemGrid .thumbnail img {
   width: 100%;
-  border-radius: 50%;
+  /* border-radius: 50%; */
 }
 
 .itemGrid:hover {
@@ -51,5 +51,14 @@
   }
   100% {
     opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .itemGrid {
+    width: 140px;
+  }
+  .itemGrid .thumbnail {
+    height: 140px;
   }
 }

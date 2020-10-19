@@ -2,22 +2,28 @@ import React from "react";
 import { GridLayout } from "@egjs/react-infinitegrid";
 import "./InfiniteGrid.css";
 import Coin from "../../assets/coin.png";
-import { Loading } from "@geist-ui/react";
+import { Loading, useMediaQuery } from "@geist-ui/react";
 import { Link } from "react-router-dom";
 
 const Item = ({ num, array }) => (
   <div className="itemGrid">
-    <Link to={`/browse/spacebud/${array[num]}`}>
+    <Link to={`/browse/spacebud/${array[num] % 9}`}>
       <div className="thumbnail">
         <img
-          src={`https://picsum.photos/1000/1000?random=${array[num]}`}
+          // src={`https://picsum.photos/1000/1000?random=${array[num]}`}
+          src={`/set3/sample${array[num] % 9}.svg`}
           alt="egjs"
         />
       </div>
-      <div className="info">{`SpaceBud #${array[num]}`}</div>
+      <div className="info">{`SpaceBud #${array[num] % 9}`}</div>
     </Link>
   </div>
 );
+
+const ScreenWidth = (props) => {
+  const matches = useMediaQuery("md", { match: "up" });
+  return <InfiniteGrid {...props} matches={matches} />;
+};
 
 class InfiniteGrid extends React.Component {
   state = { list: [] };
@@ -64,7 +70,7 @@ class InfiniteGrid extends React.Component {
           isConstantSize: true,
         }}
         layoutOptions={{
-          margin: 40,
+          margin: this.props.matches ? 65 : 50,
           align: "center",
         }}
         loading={<Loading size="large" type="success" />}
@@ -77,4 +83,4 @@ class InfiniteGrid extends React.Component {
   }
 }
 
-export default InfiniteGrid;
+export default ScreenWidth;

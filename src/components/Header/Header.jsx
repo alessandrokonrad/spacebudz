@@ -32,7 +32,12 @@ const Header = (props) => {
     >
       {/* Logo */}
       <div
-        style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          cursor: "pointer",
+          zIndex: 2,
+        }}
         onClick={() => {
           history.push("/");
           window.scrollTo(0, 0);
