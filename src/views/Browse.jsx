@@ -4,6 +4,7 @@ import { Search } from "../components/Filter";
 import InfiniteGrid from "../components/InfiniteGrid";
 import { SpaceBud } from ".";
 import { Checkbox, Spacer } from "@geist-ui/react";
+import { FloatingButton } from "../components/Button";
 
 const array = [...Array(300).keys()];
 
@@ -41,6 +42,7 @@ const Browse = (props) => {
         marginTop: 10,
       }}
     >
+      {showGrid && <FloatingButton onClick={() => window.scrollTo(0, 0)} />}
       <div
         style={{
           opacity: !showGrid && 0,

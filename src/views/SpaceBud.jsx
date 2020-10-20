@@ -1,10 +1,12 @@
-import { Button, Image, Spacer } from "@geist-ui/react";
-import { mdiShare, mdiShareVariant, mdiShareVariantOutline } from "@mdi/js";
+import { Link, Spacer } from "@geist-ui/react";
+import { mdiShareVariantOutline } from "@mdi/js";
 import Icon from "@mdi/react";
 import React from "react";
-import Sample from "../assets/coin.png";
+import MiddleEllipsis from "react-middle-ellipsis";
+import { useHistory } from "react-router-dom";
 
 const SpaceBud = (props) => {
+  const history = useHistory();
   const [data, setData] = React.useState("");
 
   const getId = () => {
@@ -62,6 +64,45 @@ const SpaceBud = (props) => {
         <Spacer y={1} />
         <div style={{ fontWeight: 600, fontSize: 30 }}>SpaceBud #{data.id}</div>
         Ape Astronaut
+      </div>
+      <Spacer y={0.6} />
+      <div
+        style={{
+          paddingTop: 8,
+          paddingBottom: 8,
+          paddingLeft: 12,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: 16,
+          border: "solid 2px #311b92",
+          borderRadius: 25,
+          color: "#777777",
+        }}
+      >
+        <span>
+          <b>Owner:</b>{" "}
+        </span>
+        <div
+          style={{
+            width: "200px",
+            whiteSpace: "nowrap",
+            textAlign: "center",
+          }}
+        >
+          <MiddleEllipsis>
+            <Link
+              underline
+              color="success"
+              onClick={(e) => {
+                e.preventDefault();
+                history.push("/");
+              }}
+            >
+              addr1q88auysv8uale3unvnk2s9xrwqqxf2dzs7wpyut6g3xzuwlnhh356yzp7k3qwmhe4fk0g5u6kx5ka4rz5qcq4j7mvh2swy44jn
+            </Link>
+          </MiddleEllipsis>
+        </div>
       </div>
     </div>
   );

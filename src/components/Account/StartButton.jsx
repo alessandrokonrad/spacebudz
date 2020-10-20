@@ -12,7 +12,7 @@ const StartButton = (props) => {
       style={{
         width: 85,
         height: 45,
-        borderRadius: 20,
+        borderRadius: 25,
         fontWeight: 500,
         backgroundImage: `url(${Background})`,
         backgroundSize: "cover",
