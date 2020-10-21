@@ -1,11 +1,12 @@
-import { Link, Spacer } from "@geist-ui/react";
+import { Badge, Link, Spacer } from "@geist-ui/react";
 import { mdiShareVariantOutline } from "@mdi/js";
 import Icon from "@mdi/react";
 import React from "react";
 import MiddleEllipsis from "react-middle-ellipsis";
 import { useHistory } from "react-router-dom";
+import { Button } from "../components/Button";
 
-const SpaceBud = (props) => {
+const SpaceBud = React.forwardRef((props, ref) => {
   const history = useHistory();
   const [data, setData] = React.useState("");
 
@@ -31,9 +32,10 @@ const SpaceBud = (props) => {
   }, []);
   return (
     <div
+      ref={ref}
       style={{
+        position: "absolute",
         width: "100%",
-        height: "100%",
         display: "flex",
         alignItems: "center",
         flexDirection: "column",
@@ -65,7 +67,7 @@ const SpaceBud = (props) => {
         <div style={{ fontWeight: 600, fontSize: 30 }}>SpaceBud #{data.id}</div>
         Ape Astronaut
       </div>
-      <Spacer y={0.6} />
+      <Spacer y={1} />
       <div
         style={{
           paddingTop: 8,
@@ -104,8 +106,118 @@ const SpaceBud = (props) => {
           </MiddleEllipsis>
         </div>
       </div>
+      <Spacer y={1.5} />
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <div>
+          <div style={{ fontSize: 12 }}>Buy now price</div>
+          <Spacer y={0.1} />
+          <div style={{ fontWeight: 500 }}>100.0 ADA</div>
+          <Spacer y={0.1} />
+          <div style={{ fontSize: 12, color: "#777777" }}>10.8 USD</div>
+        </div>
+        <Spacer x={1} />
+        <Button>Buy</Button>
+        <Spacer x={0.4} />
+        <Button bgcolor="#263238">Make Offer</Button>
+      </div>
+      <Spacer y={1.5} />
+      <div style={{ fontSize: 26, color: "#777777", fontWeight: 600 }}>
+        Attributes
+      </div>
+      <Spacer y={0.5} />
+      <div
+        style={{
+          maxWidth: 400,
+        }}
+      >
+        <div
+          style={{
+            height: 20,
+            backgroundColor: "#9575cd",
+            padding: "2px 5px",
+            borderRadius: 25,
+            fontSize: 14,
+            color: "white",
+            fontWeight: 500,
+            textAlign: "center",
+            verticalAlign: "middle",
+          }}
+        >
+          Helmet
+        </div>
+        <Spacer x={0.5} />
+        <div
+          style={{
+            height: 20,
+            backgroundColor: "#9575cd",
+            padding: "2px 5px",
+            borderRadius: 25,
+            fontSize: 14,
+            color: "white",
+            fontWeight: 500,
+            textAlign: "center",
+            verticalAlign: "middle",
+          }}
+        >
+          Helmet
+        </div>
+        <Spacer x={0.5} />
+        <div
+          style={{
+            height: 20,
+            backgroundColor: "#9575cd",
+            padding: "2px 5px",
+            borderRadius: 25,
+            fontSize: 14,
+            color: "white",
+            fontWeight: 500,
+            textAlign: "center",
+            verticalAlign: "middle",
+          }}
+        >
+          Helmet
+        </div>
+        <Spacer x={0.5} />
+        <div
+          style={{
+            height: 20,
+            backgroundColor: "#9575cd",
+            padding: "2px 5px",
+            borderRadius: 25,
+            fontSize: 14,
+            color: "white",
+            fontWeight: 500,
+            textAlign: "center",
+            verticalAlign: "middle",
+          }}
+        >
+          Helmet
+        </div>
+        <Spacer x={0.5} />
+        <div
+          style={{
+            height: 20,
+            backgroundColor: "#9575cd",
+            padding: "2px 5px",
+            borderRadius: 25,
+            fontSize: 14,
+            color: "white",
+            fontWeight: 500,
+            textAlign: "center",
+            verticalAlign: "middle",
+          }}
+        >
+          Helmet
+        </div>
+      </div>
     </div>
   );
-};
+});
 
 export default SpaceBud;

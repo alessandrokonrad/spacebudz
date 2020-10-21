@@ -12,6 +12,8 @@ const Browse = (props) => {
   const [isGridFirst, setIsGridFirst] = React.useState(false);
   const [showGrid, setShowGrid] = React.useState(true);
   const [idArray, setIdArray] = React.useState(null);
+  const profileRef = React.createRef();
+  const [height, setHeight] = React.useState(window.innerHeight);
   const shuffle = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -38,6 +40,14 @@ const Browse = (props) => {
   }, [window.location.href]);
 
   React.useEffect(() => {
+    if (profileRef.current) {
+      let pHeight = profileRef.current.offsetHeight + 100;
+      setHeight(window.innerHeight > pHeight ? window.innerHeight : pHeight);
+      console.log(profileRef.current.offsetHeight);
+    }
+  }, [profileRef]);
+
+  React.useEffect(() => {
     shuffle(array);
     setIdArray(array);
   }, []);
@@ -46,7 +56,7 @@ const Browse = (props) => {
       style={{
         position: "relative",
         width: "100%",
-        minHeight: "100vh",
+        minHeight: height,
         display: "flex",
         alignItems: "center",
         flexDirection: "column",
@@ -119,17 +129,7 @@ const Browse = (props) => {
           </div>
         </div>
       )}
-      {!showGrid && (
-        <div
-          style={{
-            position: "absolute",
-            width: "100%",
-            height: "100%",
-          }}
-        >
-          <SpaceBud />
-        </div>
-      )}
+      {!showGrid && <SpaceBud ref={profileRef} />}
     </div>
   );
 };
