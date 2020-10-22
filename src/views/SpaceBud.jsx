@@ -178,9 +178,6 @@ const SpaceBud = React.forwardRef((props, ref) => {
   );
 });
 
-const spaces =
-  "%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20";
-
 const ShareModal = (props) => {
   return (
     <Modal {...props.modal.bindings} open={props.modal.visible}>
