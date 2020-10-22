@@ -1,10 +1,13 @@
-import { Badge, Link, Spacer } from "@geist-ui/react";
+import { Badge, Grid, Link, Spacer } from "@geist-ui/react";
 import { mdiShareVariantOutline } from "@mdi/js";
 import Icon from "@mdi/react";
 import React from "react";
 import MiddleEllipsis from "react-middle-ellipsis";
 import { useHistory } from "react-router-dom";
 import { Button } from "../components/Button";
+
+const sampleAddr =
+  "addr1q88auysv8uale3unvnk2s9xrwqqxf2dzs7wpyut6g3xzuwlnhh356yzp7k3qwmhe4fk0g5u6kx5ka4rz5qcq4j7mvh2swy44jn";
 
 const SpaceBud = React.forwardRef((props, ref) => {
   const history = useHistory();
@@ -98,10 +101,10 @@ const SpaceBud = React.forwardRef((props, ref) => {
               color="success"
               onClick={(e) => {
                 e.preventDefault();
-                history.push("/");
+                history.push(`/profile/${sampleAddr}`);
               }}
             >
-              addr1q88auysv8uale3unvnk2s9xrwqqxf2dzs7wpyut6g3xzuwlnhh356yzp7k3qwmhe4fk0g5u6kx5ka4rz5qcq4j7mvh2swy44jn
+              {sampleAddr}
             </Link>
           </MiddleEllipsis>
         </div>
@@ -133,88 +136,93 @@ const SpaceBud = React.forwardRef((props, ref) => {
       <Spacer y={0.5} />
       <div
         style={{
-          maxWidth: 400,
+          width: 350,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
-        <div
+        <Grid.Container
+          gap={1}
           style={{
-            height: 20,
-            backgroundColor: "#9575cd",
-            padding: "2px 5px",
-            borderRadius: 25,
-            fontSize: 14,
-            color: "white",
-            fontWeight: 500,
-            textAlign: "center",
-            verticalAlign: "middle",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
-          Helmet
-        </div>
-        <Spacer x={0.5} />
-        <div
-          style={{
-            height: 20,
-            backgroundColor: "#9575cd",
-            padding: "2px 5px",
-            borderRadius: 25,
-            fontSize: 14,
-            color: "white",
-            fontWeight: 500,
-            textAlign: "center",
-            verticalAlign: "middle",
-          }}
-        >
-          Helmet
-        </div>
-        <Spacer x={0.5} />
-        <div
-          style={{
-            height: 20,
-            backgroundColor: "#9575cd",
-            padding: "2px 5px",
-            borderRadius: 25,
-            fontSize: 14,
-            color: "white",
-            fontWeight: 500,
-            textAlign: "center",
-            verticalAlign: "middle",
-          }}
-        >
-          Helmet
-        </div>
-        <Spacer x={0.5} />
-        <div
-          style={{
-            height: 20,
-            backgroundColor: "#9575cd",
-            padding: "2px 5px",
-            borderRadius: 25,
-            fontSize: 14,
-            color: "white",
-            fontWeight: 500,
-            textAlign: "center",
-            verticalAlign: "middle",
-          }}
-        >
-          Helmet
-        </div>
-        <Spacer x={0.5} />
-        <div
-          style={{
-            height: 20,
-            backgroundColor: "#9575cd",
-            padding: "2px 5px",
-            borderRadius: 25,
-            fontSize: 14,
-            color: "white",
-            fontWeight: 500,
-            textAlign: "center",
-            verticalAlign: "middle",
-          }}
-        >
-          Helmet
-        </div>
+          <Grid
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "table",
+                height: 20,
+                backgroundColor: "#9575cd",
+                padding: "2px 5px",
+                borderRadius: 25,
+                fontSize: 14,
+                color: "white",
+                fontWeight: 500,
+                textAlign: "center",
+                verticalAlign: "middle",
+              }}
+            >
+              Weapon
+            </div>
+          </Grid>
+          <Grid
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "table",
+                height: 20,
+                backgroundColor: "#9575cd",
+                padding: "2px 5px",
+                borderRadius: 25,
+                fontSize: 14,
+                color: "white",
+                fontWeight: 500,
+                textAlign: "center",
+                verticalAlign: "middle",
+              }}
+            >
+              Flag
+            </div>
+          </Grid>
+          <Grid
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "table",
+                height: 20,
+                backgroundColor: "#9575cd",
+                padding: "2px 5px",
+                borderRadius: 25,
+                fontSize: 14,
+                color: "white",
+                fontWeight: 500,
+                textAlign: "center",
+                verticalAlign: "middle",
+              }}
+            >
+              Helmet
+            </div>
+          </Grid>
+        </Grid.Container>
       </div>
     </div>
   );
