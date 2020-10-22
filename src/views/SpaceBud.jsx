@@ -1,5 +1,19 @@
-import { Badge, Grid, Link, Spacer } from "@geist-ui/react";
-import { mdiShareVariantOutline } from "@mdi/js";
+import {
+  Badge,
+  Grid,
+  Input,
+  Link,
+  Modal,
+  Spacer,
+  useModal,
+} from "@geist-ui/react";
+import {
+  mdiFacebook,
+  mdiLink,
+  mdiReddit,
+  mdiShareVariantOutline,
+  mdiTwitter,
+} from "@mdi/js";
 import Icon from "@mdi/react";
 import React from "react";
 import MiddleEllipsis from "react-middle-ellipsis";
@@ -12,6 +26,7 @@ const sampleAddr =
 const SpaceBud = React.forwardRef((props, ref) => {
   const history = useHistory();
   const [data, setData] = React.useState("");
+  const { visible, setVisible, bindings } = useModal();
 
   const getId = () => {
     const url = window.location.href;
@@ -64,7 +79,11 @@ const SpaceBud = React.forwardRef((props, ref) => {
           path={mdiShareVariantOutline}
           size={1.2}
           style={{ position: "absolute", left: 25, top: 25, cursor: "pointer" }}
+          onClick={() => setVisible(true)}
         ></Icon>
+        {/* Modal Share */}
+        <ShareModal data={data} modal={{ visible, setVisible, bindings }} />
+        {/* Modal Share End */}
         <img width={300} height={300} src={data.image} />
         <Spacer y={1} />
         <div style={{ fontWeight: 600, fontSize: 30 }}>SpaceBud #{data.id}</div>
@@ -150,82 +169,103 @@ const SpaceBud = React.forwardRef((props, ref) => {
             justifyContent: "center",
           }}
         >
-          <Grid
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <div
-              style={{
-                display: "table",
-                height: 20,
-                backgroundColor: "#9575cd",
-                padding: "2px 5px",
-                borderRadius: 25,
-                fontSize: 14,
-                color: "white",
-                fontWeight: 500,
-                textAlign: "center",
-                verticalAlign: "middle",
-              }}
-            >
-              Weapon
-            </div>
-          </Grid>
-          <Grid
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <div
-              style={{
-                display: "table",
-                height: 20,
-                backgroundColor: "#9575cd",
-                padding: "2px 5px",
-                borderRadius: 25,
-                fontSize: 14,
-                color: "white",
-                fontWeight: 500,
-                textAlign: "center",
-                verticalAlign: "middle",
-              }}
-            >
-              Flag
-            </div>
-          </Grid>
-          <Grid
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <div
-              style={{
-                display: "table",
-                height: 20,
-                backgroundColor: "#9575cd",
-                padding: "2px 5px",
-                borderRadius: 25,
-                fontSize: 14,
-                color: "white",
-                fontWeight: 500,
-                textAlign: "center",
-                verticalAlign: "middle",
-              }}
-            >
-              Helmet
-            </div>
-          </Grid>
+          <Attribute>Flag</Attribute>
+          <Attribute>Weapon</Attribute>
+          <Attribute>Helmet</Attribute>
         </Grid.Container>
       </div>
     </div>
   );
 });
+
+const spaces =
+  "%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20";
+
+const ShareModal = (props) => {
+  return (
+    <Modal {...props.modal.bindings} open={props.modal.visible}>
+      <Modal.Title>Share</Modal.Title>
+      <Modal.Subtitle>SpaceBud #{props.data.id}</Modal.Subtitle>
+      <Modal.Content
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+        }}
+      >
+        <img width={250} height={250} src={props.data.image} />
+        <Spacer y={1} />
+        <Input
+          onFocus={(e) => e.target.select()}
+          readOnly={true}
+          value={`https://space-budz.web.app/browse/spacebud/${props.data.id}`}
+          iconRight={<Icon path={mdiLink} size={1} />}
+        ></Input>
+      </Modal.Content>
+      <Modal.Action
+        passive
+        onClick={() =>
+          window.open(
+            `https://twitter.com/intent/tweet?text=Check%20out%20SpaceBud%20%23${props.data.id}!%0A&url=${window.location.href}`
+          )
+        }
+      >
+        <Icon path={mdiTwitter} size={1} />
+      </Modal.Action>
+      <Modal.Action
+        passive
+        onClick={() =>
+          window.open(
+            "https://www.facebook.com/sharer/sharer.php?u=" +
+              encodeURIComponent(window.location.href),
+            "facebook-share-dialog"
+          )
+        }
+      >
+        <Icon path={mdiFacebook} size={1} />
+      </Modal.Action>
+      <Modal.Action
+        passive
+        onClick={() =>
+          window.open(
+            `http://www.reddit.com/submit?url=${window.location.href}&title=Check%20out%20SpaceBud%20%23${props.data.id}!`
+          )
+        }
+      >
+        <Icon path={mdiReddit} size={1} />
+      </Modal.Action>
+    </Modal>
+  );
+};
+
+const Attribute = (props) => {
+  return (
+    <Grid
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <div
+        style={{
+          display: "table",
+          height: 20,
+          backgroundColor: "#9575cd",
+          padding: "2px 5px",
+          borderRadius: 25,
+          fontSize: 14,
+          color: "white",
+          fontWeight: 500,
+          textAlign: "center",
+          verticalAlign: "middle",
+        }}
+      >
+        {props.children}
+      </div>
+    </Grid>
+  );
+};
 
 export default SpaceBud;
