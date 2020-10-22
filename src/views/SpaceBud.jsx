@@ -128,7 +128,7 @@ const SpaceBud = React.forwardRef((props, ref) => {
           </MiddleEllipsis>
         </div>
       </div>
-      <Spacer y={1.5} />
+      <Spacer y={2} />
       <div
         style={{
           display: "flex",
