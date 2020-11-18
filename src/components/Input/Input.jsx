@@ -7,10 +7,11 @@ const Input = (props) => {
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
       <input
+        {...props}
         style={{ width: props.width, height: props.height }}
         className={styles.customInput}
-        type="text"
         value={props.value}
+        type="text"
         onChange={props.onChange}
         placeholder={props.placeholder}
         onFocus={(e) => (e.target.placeholder = "")}

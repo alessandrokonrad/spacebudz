@@ -6,7 +6,7 @@ import { SpaceBud } from ".";
 import { Checkbox, Spacer } from "@geist-ui/react";
 import { FloatingButton } from "../components/Button";
 
-const array = [...Array(300).keys()];
+const array = [...Array(9).keys()];
 
 const Browse = (props) => {
   const [isGridFirst, setIsGridFirst] = React.useState(false);
@@ -68,6 +68,7 @@ const Browse = (props) => {
         <div
           style={{
             opacity: !showGrid && 0,
+            zIndex: !showGrid && -1,
             width: "100%",
             maxWidth: 1400,
           }}
@@ -92,7 +93,10 @@ const Browse = (props) => {
                       return;
                     }
                     setIdArray(null);
-                    setTimeout(() => setIdArray([e.target.value]));
+                    if (e.target.value > 8 || e.target.value < 0)
+                      // search filter for now!
+                      setTimeout(() => setIdArray([]));
+                    else setTimeout(() => setIdArray([e.target.value]));
                   }}
                 />
               </div>

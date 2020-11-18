@@ -7,11 +7,15 @@ const Search = (props) => {
   const [searchId, setSearchId] = React.useState("");
   return (
     <Input
-      placeholder="Search"
+      placeholder="Search #"
       value={searchId}
       onChange={(e) => {
-        setSearchId(e.target.value);
-        props.onChange(e);
+        const re = /^[0-9\b]+$/;
+
+        if (e.target.value === "" || re.test(e.target.value)) {
+          setSearchId(e.target.value);
+          props.onChange(e);
+        }
       }}
     />
   );

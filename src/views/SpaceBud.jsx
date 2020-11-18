@@ -1,12 +1,4 @@
-import {
-  Badge,
-  Grid,
-  Input,
-  Link,
-  Modal,
-  Spacer,
-  useModal,
-} from "@geist-ui/react";
+import { Grid, Input, Link, Modal, Spacer, useModal } from "@geist-ui/react";
 import {
   mdiFacebook,
   mdiLink,

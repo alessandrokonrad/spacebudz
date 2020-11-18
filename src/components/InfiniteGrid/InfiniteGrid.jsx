@@ -7,15 +7,15 @@ import { Link } from "react-router-dom";
 
 const Item = ({ num, array }) => (
   <div className="itemGrid">
-    <Link to={`/browse/spacebud/${array[num] % 9}`}>
+    <Link to={`/browse/spacebud/${array[num]}`}>
       <div className="thumbnail">
         <img
           // src={`https://picsum.photos/1000/1000?random=${array[num]}`}
-          src={`/set3/sample${array[num] % 9}.svg`}
+          src={`/set3/sample${array[num]}.svg`}
           alt="egjs"
         />
       </div>
-      <div className="info">{`SpaceBud #${array[num] % 9}`}</div>
+      <div className="info">{`SpaceBud #${array[num]}`}</div>
     </Link>
   </div>
 );
@@ -63,7 +63,7 @@ class InfiniteGrid extends React.Component {
     !isLayout && endLoading();
   };
   render() {
-    return (
+    return this.props.array.length > 0 ? (
       <GridLayout
         options={{
           useRecycle: false,
@@ -79,6 +79,10 @@ class InfiniteGrid extends React.Component {
       >
         {this.state.list}
       </GridLayout>
+    ) : (
+      <div style={{ width: "100%", textAlign: "center" }}>
+        SpaceBud not found
+      </div>
     );
   }
 }
