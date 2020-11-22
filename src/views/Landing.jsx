@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 
 //assets
 import Background from "../assets/landing.svg";
-import { Spacer, useMediaQuery } from "@geist-ui/react";
+import { Grid, Spacer, useMediaQuery } from "@geist-ui/react";
 
 const Landing = (props) => {
   const history = useHistory();
@@ -24,14 +24,20 @@ const Landing = (props) => {
           justifyContent: "center",
         }}
       >
-        <div style={{ marginTop: 100, display: "flex" }}>
+        <div
+          style={{
+            marginTop: matches ? 250 : 30,
+            display: "flex",
+            width: "100%",
+          }}
+        >
           {matches && (
             <>
               <img
-                width={1300}
+                width={1450}
                 style={{
                   position: "absolute",
-                  right: 0,
+                  right: -20,
                   top: 0,
                 }}
                 src={Background}
@@ -39,21 +45,42 @@ const Landing = (props) => {
               <Spacer x={5} />
             </>
           )}
-          <div>
-            <div style={{ fontSize: 28, fontWeight: 700, textAlign: "center" }}>
-              SpaceBudz - An interactive NFT game
-            </div>
-            <div style={{ maxWidth: 300 }}>
-              SpaceBudz - An interactive NFT game t is a long established fact
-              that a reader will be distracted by the readable content of a page
-            </div>
-            <Spacer y={2.5} />
-            <LaunchButton
-              onClick={() => {
-                history.push("/browse");
-                window.scrollTo(0, 0);
-              }}
-            />
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Grid.Container style={{ width: "90%" }}>
+              <Grid xs={24} md={12}>
+                <div>
+                  <div
+                    style={{
+                      fontSize: 32,
+                      fontWeight: 1000,
+                      color: "#311b92",
+                    }}
+                  >
+                    Collect your favorite Astronauts!
+                  </div>
+                  <Spacer y={0.5} />
+                  <div style={{ maxWidth: 400, fontSize: 16 }}>
+                    SpaceBudz is a NFT platform built on the Cardano blockchain.
+                    Collect, buy and sell your favorite Budz. Share them with
+                    your friends!
+                  </div>
+                </div>
+                <Spacer y={1.8} />
+                <LaunchButton
+                  onClick={() => {
+                    history.push("/browse");
+                    window.scrollTo(0, 0);
+                  }}
+                />
+              </Grid>
+            </Grid.Container>
           </div>
         </div>
       </div>
