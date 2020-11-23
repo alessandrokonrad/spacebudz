@@ -89,7 +89,7 @@ const Header = (props) => {
               window.scrollTo(0, 0);
             }}
           >
-            Browse
+            Explore
           </Tab>
           <Spacer x={1.2} />
           <Tab

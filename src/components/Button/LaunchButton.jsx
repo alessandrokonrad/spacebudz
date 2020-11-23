@@ -39,7 +39,7 @@ const LaunchButton = (props) => {
     <React.Fragment>
       {" "}
       <a href="" className="rocket-button" style={{ padding: "20px 32px" }}>
-        <div className="default">Browse Collectibles</div>
+        <div className="default">Explore Collectibles</div>
 
         <div className="animation">
           <div className="rocket">

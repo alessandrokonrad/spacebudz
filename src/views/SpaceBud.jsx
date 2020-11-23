@@ -52,7 +52,7 @@ const SpaceBud = React.forwardRef((props, ref) => {
         display: "flex",
         alignItems: "center",
         flexDirection: "column",
-        marginTop: 20,
+        marginTop: 30,
       }}
     >
       <div
@@ -82,7 +82,17 @@ const SpaceBud = React.forwardRef((props, ref) => {
         {/* Modal Share */}
         <ShareModal data={data} modal={{ visible, setVisible, bindings }} />
         {/* Modal Share End */}
-        <img width={300} height={300} src={data.image} />
+        <div
+          style={{
+            width: 300,
+            height: 300,
+            borderRadius: "50%",
+            padding: 3,
+            backgroundColor: "white",
+          }}
+        >
+          <img src={data.image} />
+        </div>
         <Spacer y={1} />
         <div style={{ fontWeight: 600, fontSize: 30 }}>SpaceBud #{data.id}</div>
         Ape Astronaut
