@@ -12,6 +12,9 @@ import MiddleEllipsis from "react-middle-ellipsis";
 import { useHistory } from "react-router-dom";
 import { Button } from "../components/Button";
 
+//assets
+import Show from "../assets/show.svg";
+
 const sampleAddr =
   "addr1q88auysv8uale3unvnk2s9xrwqqxf2dzs7wpyut6g3xzuwlnhh356yzp7k3qwmhe4fk0g5u6kx5ka4rz5qcq4j7mvh2swy44jn";
 
@@ -59,7 +62,10 @@ const SpaceBud = React.forwardRef((props, ref) => {
           paddingBottom: 35,
           width: "95%",
           borderRadius: 10,
-          backgroundColor: "#263238",
+          backgroundImage: `url(${Show})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          // backgroundColor: "#263238",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",

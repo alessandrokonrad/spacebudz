@@ -60,7 +60,7 @@ const Browse = (props) => {
         display: "flex",
         alignItems: "center",
         flexDirection: "column",
-        marginTop: 10,
+        marginTop: 100,
       }}
     >
       {showGrid && <FloatingButton onClick={() => window.scrollTo(0, 0)} />}
