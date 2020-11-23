@@ -1,4 +1,12 @@
-import { Grid, Input, Link, Modal, Spacer, useModal } from "@geist-ui/react";
+import {
+  Grid,
+  Input,
+  Link,
+  Modal,
+  Spacer,
+  useModal,
+  useMediaQuery,
+} from "@geist-ui/react";
 import {
   mdiFacebook,
   mdiLink,
@@ -20,6 +28,7 @@ const sampleAddr =
 
 const SpaceBud = React.forwardRef((props, ref) => {
   const history = useHistory();
+  const matches = useMediaQuery("md", { match: "up" });
   const [data, setData] = React.useState("");
   const { visible, setVisible, bindings } = useModal();
 
@@ -58,7 +67,6 @@ const SpaceBud = React.forwardRef((props, ref) => {
       <div
         style={{
           position: "relative",
-          paddingTop: 35,
           paddingBottom: 35,
           width: "95%",
           borderRadius: 10,
@@ -84,14 +92,15 @@ const SpaceBud = React.forwardRef((props, ref) => {
         {/* Modal Share End */}
         <div
           style={{
-            width: 300,
-            height: 300,
+            width: matches ? 410 : 350,
+            height: matches ? 410 : 350,
             borderRadius: "50%",
-            padding: 3,
-            backgroundColor: "white",
+            marginTop: -15,
+            marginBottom: -50,
+            // backgroundColor: "white",
           }}
         >
-          <img src={data.image} />
+          <img style={{}} src={data.image} />
         </div>
         <Spacer y={1} />
         <div style={{ fontWeight: 600, fontSize: 30 }}>SpaceBud #{data.id}</div>
@@ -199,7 +208,12 @@ const ShareModal = (props) => {
           flexDirection: "column",
         }}
       >
-        <img width={250} height={250} src={props.data.image} />
+        <img
+          style={{ marginTop: -30, marginBottom: -30 }}
+          width={300}
+          height={300}
+          src={props.data.image}
+        />
         <Spacer y={1} />
         <Input
           onFocus={(e) => e.target.select()}

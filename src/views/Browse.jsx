@@ -6,7 +6,7 @@ import { SpaceBud } from ".";
 import { Checkbox, Spacer } from "@geist-ui/react";
 import { FloatingButton } from "../components/Button";
 
-const array = [...Array(9).keys()];
+const array = [...Array(6).keys()];
 
 const Browse = (props) => {
   const [isGridFirst, setIsGridFirst] = React.useState(false);
@@ -60,7 +60,7 @@ const Browse = (props) => {
         display: "flex",
         alignItems: "center",
         flexDirection: "column",
-        marginTop: 100,
+        marginTop: 110,
       }}
     >
       {showGrid && <FloatingButton onClick={() => window.scrollTo(0, 0)} />}

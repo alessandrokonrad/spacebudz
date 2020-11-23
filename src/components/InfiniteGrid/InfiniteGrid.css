@@ -1,12 +1,12 @@
 .itemGrid {
-  width: 180px;
+  width: 280px;
   opacity: 1;
   cursor: pointer;
   animation-duration: 1s;
   animation-name: fadeIn;
 }
 .itemGrid .thumbnail {
-  height: 180px;
+  height: 280px;
   /* background: #9fa8da; */
   border-radius: 50%;
   display: flex;
@@ -24,7 +24,7 @@
 
 .itemGrid .info {
   text-align: center;
-  margin-top: 10px;
+  margin-top: -10px;
   font-weight: bold;
   color: #777;
 }
@@ -56,9 +56,9 @@
 
 @media only screen and (max-width: 900px) {
   .itemGrid {
-    width: 140px;
+    width: 180px;
   }
   .itemGrid .thumbnail {
-    height: 140px;
+    height: 180px;
   }
 }

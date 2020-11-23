@@ -1,7 +1,6 @@
 import React from "react";
 import { GridLayout } from "@egjs/react-infinitegrid";
 import "./InfiniteGrid.css";
-import Coin from "../../assets/coin.png";
 import { Loading, useMediaQuery } from "@geist-ui/react";
 import { Link } from "react-router-dom";
 
@@ -70,7 +69,7 @@ class InfiniteGrid extends React.Component {
           isConstantSize: true,
         }}
         layoutOptions={{
-          margin: this.props.matches ? 65 : 50,
+          margin: !this.props.matches && -6,
           align: "center",
         }}
         loading={<Loading size="large" type="success" />}
