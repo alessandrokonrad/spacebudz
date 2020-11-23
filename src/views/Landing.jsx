@@ -123,7 +123,7 @@ const Landing = (props) => {
                   <Spacer y={1.8} />
                   <LaunchButton
                     onClick={() => {
-                      history.push("/browse");
+                      history.push("/explore");
                       window.scrollTo(0, 0);
                     }}
                   />

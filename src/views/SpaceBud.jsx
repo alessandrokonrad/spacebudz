@@ -204,7 +204,7 @@ const ShareModal = (props) => {
         <Input
           onFocus={(e) => e.target.select()}
           readOnly={true}
-          value={`https://space-budz.web.app/browse/spacebud/${props.data.id}`}
+          value={`https://space-budz.web.app/explore/spacebud/${props.data.id}`}
           iconRight={<Icon path={mdiLink} size={1} />}
         ></Input>
       </Modal.Content>

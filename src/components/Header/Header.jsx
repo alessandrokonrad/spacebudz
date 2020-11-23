@@ -85,7 +85,7 @@ const Header = (props) => {
           <Tab
             icon={mdiRocketOutline}
             onClick={() => {
-              history.push("/browse");
+              history.push("/explore");
               window.scrollTo(0, 0);
             }}
           >

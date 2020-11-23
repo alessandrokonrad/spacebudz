@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const Item = ({ num, array }) => (
   <div className="itemGrid">
-    <Link to={`/browse/spacebud/${array[num]}`}>
+    <Link to={`/explore/spacebud/${array[num]}`}>
       <div className="thumbnail">
         <img
           // src={`https://picsum.photos/1000/1000?random=${array[num]}`}

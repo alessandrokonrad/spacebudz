@@ -23,9 +23,9 @@ const App = () => {
           <Switch>
             <Route exact path="/" component={Landing} title="SpaceBudz"></Route>
             <Route
-              path="/browse"
+              path="/explore"
               component={Browse}
-              title="SpaceBudz | Browse"
+              title="SpaceBudz | Explore"
             ></Route>
 
             <Route
