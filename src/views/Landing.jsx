@@ -53,9 +53,10 @@ const Landing = (props) => {
                   <div>
                     <div
                       style={{
-                        fontSize: 36,
+                        fontSize: matches ? 38 : 32,
                         fontWeight: 1000,
                         color: "#311b92",
+                        filter: "brightness(2)",
                       }}
                     >
                       Collect your favorite Astronauts!
@@ -133,7 +134,6 @@ const Landing = (props) => {
           </div>
         </div>
       </div>
-      {/* What is SpaceBudz */}
       <Spacer y={4} />
       <div
         style={{
@@ -141,8 +141,10 @@ const Landing = (props) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          flexDirection: "column",
         }}
       >
+        {/* What is SpaceBudz */}
         <div
           style={{
             maxWidth: 800,
@@ -164,6 +166,12 @@ const Landing = (props) => {
             </div>
           </div>
         </div>
+        {/* How It Works */}
+        <Spacer y={5} />
+        <div style={{ fontSize: 32 }}>How It Works</div>
+        {/* Contact */}
+        <Spacer y={5} />
+        <div style={{ fontSize: 32 }}>Still clueless?</div>
       </div>
       <Spacer y={3} />
     </div>

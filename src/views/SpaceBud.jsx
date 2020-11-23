@@ -158,7 +158,7 @@ const SpaceBud = React.forwardRef((props, ref) => {
       </div>
       <Spacer y={1.5} />
       <div style={{ fontSize: 26, color: "#777777", fontWeight: 600 }}>
-        Attributes
+        Gadgets
       </div>
       <Spacer y={0.5} />
       <div

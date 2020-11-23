@@ -59,6 +59,7 @@ const Header = (props) => {
               <Spacer x={0.8} />
               <span
                 style={{
+                  filter: "brightness(1.2)",
                   fontFamily: "'Heebo', sans-serif",
                   fontSize: 28,
                   color: "#311b92",
