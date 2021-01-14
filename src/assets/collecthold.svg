@@ -13,7 +13,7 @@
    viewBox="0 0 31.640032 31.640032"
    id="svg4"
    sodipodi:docname="collecthold.svg"
-   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)">
+   inkscape:version="1.0.1 (1.0.1+r74)">
   <metadata
      id="metadata10">
     <rdf:RDF>
@@ -22,7 +22,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -38,7 +38,7 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1848"
-     inkscape:window-height="1017"
+     inkscape:window-height="1016"
      id="namedview6"
      showgrid="false"
      inkscape:zoom="10.548485"
@@ -47,9 +47,10 @@
      inkscape:window-x="72"
      inkscape:window-y="27"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg4" />
+     inkscape:current-layer="svg4"
+     inkscape:document-rotation="0" />
   <circle
-     style="opacity:1;fill:#fcffff;fill-opacity:1;stroke:none;stroke-width:57.09732437;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0"
+     style="opacity:1;fill:#311b92;fill-opacity:1;stroke:none;stroke-width:57.09732437;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0"
      id="path817"
      cx="15.820016"
      cy="15.820016"
@@ -58,5 +59,5 @@
      id="path814"
      d="m 15.820016,10.126178 c -2.796307,0 -5.061189,1.132442 -5.061189,2.530595 v 6.326486 c 0,1.398154 2.271208,2.530595 5.061189,2.530595 2.789981,0 5.061189,-1.132441 5.061189,-2.530595 v -6.326486 c 0,-1.398153 -2.264882,-2.530595 -5.061189,-2.530595 m 3.795892,8.857081 c 0,0.316325 -1.347542,1.265298 -3.795892,1.265298 -2.44835,0 -3.795892,-0.948973 -3.795892,-1.265298 v -1.410806 c 1.018564,0.493466 2.353453,0.778158 3.795892,0.778158 1.442439,0 2.777328,-0.284692 3.795892,-0.778158 v 1.410806 m 0,-2.878551 c -0.822443,0.601016 -2.264882,0.980605 -3.795892,0.980605 -1.53101,0 -2.973449,-0.379589 -3.795892,-0.980605 v -1.777743 c 0.929994,0.525099 2.283862,0.860402 3.795892,0.860402 1.51203,0 2.865898,-0.335303 3.795892,-0.860402 v 1.777743 m -3.795892,-2.182637 c -2.44835,0 -3.795892,-0.948973 -3.795892,-1.265298 0,-0.316324 1.347542,-1.265297 3.795892,-1.265297 2.44835,0 3.795892,0.948973 3.795892,1.265297 0,0.316325 -1.347542,1.265298 -3.795892,1.265298 z"
      inkscape:connector-curvature="0"
-     style="fill:#041b41;fill-opacity:1;stroke-width:0.63264865" />
+     style="fill:#ffffff;fill-opacity:1;stroke-width:0.63264865" />
 </svg>

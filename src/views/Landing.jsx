@@ -4,11 +4,13 @@ import { useHistory } from "react-router-dom";
 import { Grid, Spacer, useMediaQuery } from "@geist-ui/react";
 
 //assets
-import Wallpaper from "../assets/wallpaper.svg";
+import Wallpaper from "../assets/wall3.jpg";
 import BuySellIcon from "../assets/buysell.svg";
 import CollectHoldIcon from "../assets/collecthold.svg";
 import ShareGiftIcon from "../assets/sharegift.svg";
 import BudRepresent from "../assets/spacebud.svg";
+
+import "./Landing.scss";
 
 const Landing = (props) => {
   const history = useHistory();
@@ -21,6 +23,7 @@ const Landing = (props) => {
           width: "100%",
           minHeight: "100vh",
           backgroundImage: `url(${Wallpaper})`,
+          // backgroundImage: `url(wall.jpg)`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
         }}
@@ -49,21 +52,33 @@ const Landing = (props) => {
               }}
             >
               <Grid.Container style={{ width: "90%" }}>
-                <Grid xs={24} md={12}>
+                {/* <Grid md={14}></Grid> */}
+                <Grid
+                  xs={24}
+                  md={10}
+                  style={{
+                    background: "white",
+                    padding: 30,
+                    borderRadius: 16,
+                    // border: "solid #311b92 10px",
+                    marginBottom: !matches && "30px",
+                    position: "relative",
+                  }}
+                >
                   <div>
                     <div
                       style={{
                         fontSize: matches ? 38 : 32,
                         fontWeight: 1000,
                         color: "#311b92",
-                        filter: "brightness(2)",
+                        // filter: "brightness(2)",
                       }}
                     >
                       Collect your favorite Astronauts!
                     </div>
                     <Spacer y={1} />
                     <div
-                      style={{ color: "white", maxWidth: 350, fontSize: 14 }}
+                      style={{ color: "black", maxWidth: 350, fontSize: 14 }}
                     >
                       <Grid.Container gap={1}>
                         <Grid xs={12}>
@@ -114,7 +129,7 @@ const Landing = (props) => {
                       style={{
                         maxWidth: 500,
                         fontSize: 18,
-                        color: "white",
+                        color: "#82817D",
                         fontWeight: "bold",
                       }}
                     >
@@ -122,12 +137,19 @@ const Landing = (props) => {
                     </div>
                   </div>
                   <Spacer y={1.8} />
-                  <LaunchButton
-                    onClick={() => {
-                      history.push("/explore");
-                      window.scrollTo(0, 0);
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: -25,
                     }}
-                  />
+                  >
+                    <LaunchButton
+                      onClick={() => {
+                        history.push("/explore");
+                        window.scrollTo(0, 0);
+                      }}
+                    />
+                  </div>
                 </Grid>
               </Grid.Container>
             </div>

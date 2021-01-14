@@ -13,7 +13,7 @@
    viewBox="0 0 31.640032 31.640032"
    id="svg4"
    sodipodi:docname="buysell.svg"
-   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)">
+   inkscape:version="1.0.1 (1.0.1+r74)">
   <metadata
      id="metadata10">
     <rdf:RDF>
@@ -37,18 +37,19 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1848"
-     inkscape:window-height="1017"
+     inkscape:window-height="1016"
      id="namedview6"
      showgrid="false"
      inkscape:zoom="10.548485"
-     inkscape:cx="-5.1972792"
+     inkscape:cx="8.6449122"
      inkscape:cy="9.2672528"
      inkscape:window-x="72"
      inkscape:window-y="27"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg4" />
+     inkscape:current-layer="svg4"
+     inkscape:document-rotation="0" />
   <circle
-     style="opacity:1;fill:#fcffff;fill-opacity:1;stroke:none;stroke-width:57.09732437;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0"
+     style="opacity:1;fill:#311b92;fill-opacity:1;stroke:none;stroke-width:57.09732437;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0"
      id="path817"
      cx="15.820016"
      cy="15.820016"
@@ -57,10 +58,10 @@
      d="m 13.633463,20.744716 h -1.043549 v -7.837714 l -2.438646,2.438646 -0.7401054,-0.740105 3.7005264,-3.700526 3.700526,3.700526 -0.740105,0.740105 -2.438647,-2.438646 z"
      id="path2"
      inkscape:connector-curvature="0"
-     style="fill:#041b41;fill-opacity:1;stroke-width:0.52333349" />
+     style="fill:#ffffff;fill-opacity:1;stroke-width:0.52333349" />
   <path
      inkscape:connector-curvature="0"
      d="m 18.006569,10.895315 h 1.04355 v 7.837715 l 2.438645,-2.438646 0.740106,0.740105 -3.700527,3.700526 -3.700526,-3.700526 0.740105,-0.740105 2.438647,2.438646 z"
      id="path2-6"
-     style="fill:#041b41;fill-opacity:1;stroke-width:0.52333349" />
+     style="fill:#ffffff;fill-opacity:1;stroke-width:0.52333349" />
 </svg>

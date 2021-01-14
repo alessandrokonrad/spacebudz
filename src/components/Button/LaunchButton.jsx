@@ -36,9 +36,9 @@ const LaunchButton = (props) => {
     });
   }, []);
   return (
-    <React.Fragment>
+    <div>
       {" "}
-      <a href="" className="rocket-button" style={{ padding: "20px 32px" }}>
+      <a href="" className="rocket-button" style={{ padding: "25px 34px" }}>
         <div className="default">Explore Collectibles</div>
 
         <div className="animation">
@@ -55,7 +55,7 @@ const LaunchButton = (props) => {
           </div>
         </div>
       </a>
-    </React.Fragment>
+    </div>
   );
 };
 
