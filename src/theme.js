@@ -1,7 +1,3 @@
-const theme = {
-  palette: {
-    success: "#4a148c",
-  },
-};
+const theme = {};
 
 export default theme;
