@@ -48,7 +48,9 @@
     "react-lazyload": "^3.0.0",
     "react-middle-ellipsis": "^1.1.0",
     "react-planet": "^1.0.1",
+    "react-qr-code": "^1.1.1",
     "react-reveal": "^1.2.2",
+    "react-spinners": "^0.10.6",
     "styled-components": "^5.2.1"
   }
 }

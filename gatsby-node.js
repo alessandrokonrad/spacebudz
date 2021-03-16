@@ -2,15 +2,14 @@ const fs = require("fs");
 const metadata = require("./metadata.json");
 // const fetch = require("node-fetch");
 
-let animals = ["Dino", "Bull", "Fish", "Cat", "Dog", "Alien", "Perculiar"];
-let g = [["Pistol", "Flag"], ["Light Saber"], ["Blaster", "Ski Goggles"]];
+const it = 0;
 
 const getSpacebudz = () => {
   return Object.keys(metadata).map((id) => {
-    let price =
+    const price =
       Math.random() > 0.5 ? Math.floor(Math.random() * 100) + 1 : null;
-    let name = metadata[id].name;
-    let gadgets = metadata[id].gadgets;
+    const name = metadata[id].name;
+    const gadgets = metadata[id].gadgets;
     return {
       id,
       price,

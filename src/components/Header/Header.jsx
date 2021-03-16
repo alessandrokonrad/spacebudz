@@ -16,7 +16,7 @@ import { useBreakpoint } from "gatsby-plugin-breakpoints";
 
 //assets
 import Logo from "../../images/assets/logo3.svg";
-import Title from "../../images/assets/title.png";
+import Title from "../../images/assets/title.svg";
 
 const Header = (props) => {
   const matches = useBreakpoint();
