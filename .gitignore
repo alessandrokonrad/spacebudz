@@ -4,5 +4,5 @@ public/
 static/
 .firebase/
 .firebaserc
-.firebase.json
-.package-lock.json
+firebase.json
+package-lock.json
