@@ -6,6 +6,7 @@ import {
   mdiSortVariant,
   mdiTwitter,
   mdiTelegram,
+  mdiDiscord,
 } from "@mdi/js";
 import { Spacer, Popover, Link } from "@geist-ui/react";
 import Icon from "@mdi/react";
@@ -100,11 +101,17 @@ const Header = (props) => {
             icon={mdiBookOpenOutline}
             menu={
               <>
-                <Popover.Item style={{ cursor: "pointer" }}>
+                <Popover.Item
+                  style={{ cursor: "pointer" }}
+                  onClick={() => navigate("/tutorial")}
+                >
                   <span>How It Works</span>
                 </Popover.Item>
                 <Popover.Item line />
-                <Popover.Item style={{ cursor: "pointer" }}>
+                <Popover.Item
+                  style={{ cursor: "pointer" }}
+                  onClick={() => navigate("/FAQ")}
+                >
                   <span>FAQ</span>
                 </Popover.Item>
               </>
@@ -138,12 +145,27 @@ const Header = (props) => {
                     <span style={{ marginLeft: 4 }}>Telegram</span>
                   </Link>
                 </Popover.Item>
+                <Popover.Item>
+                  <Link
+                    href="#"
+                    style={{ display: "flex", alignItems: "center" }}
+                  >
+                    <Icon path={mdiDiscord} size={0.7} />{" "}
+                    <span style={{ marginLeft: 4 }}>Discord</span>
+                  </Link>
+                </Popover.Item>
                 <Popover.Item line />
-                <Popover.Item style={{ cursor: "pointer" }}>
+                <Popover.Item
+                  style={{ cursor: "pointer" }}
+                  onClick={() => navigate("/about")}
+                >
                   <span>About</span>
                 </Popover.Item>
                 <Popover.Item line />
-                <Popover.Item style={{ cursor: "pointer" }}>
+                <Popover.Item
+                  style={{ cursor: "pointer" }}
+                  onClick={() => navigate("/contact")}
+                >
                   <span>Contact</span>
                 </Popover.Item>
               </>

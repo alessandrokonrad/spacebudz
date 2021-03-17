@@ -1,7 +1,15 @@
 import React from "react";
 import { Button, LaunchButton } from "../components/Button";
-import { Grid, Loading, Spacer, Modal, Snippet } from "@geist-ui/react";
-
+import {
+  Grid,
+  Loading,
+  Spacer,
+  Modal,
+  Snippet,
+  Link,
+  useModal,
+} from "@geist-ui/react";
+import { useBreakpoint } from "gatsby-plugin-breakpoints";
 import Layout from "../templates/layout";
 import Metadata from "../components/Metadata";
 
@@ -12,11 +20,13 @@ import QRCode from "react-qr-code";
 //assets
 import QrIcon from "../images/assets/qr.png";
 
-import { navigate } from "gatsby";
-import { useBreakpoint } from "gatsby-plugin-breakpoints";
+import { Share2 } from "@geist-ui/react-icons";
+import { ShareModal } from "../components/Modal";
 
 const ADDRESS =
   "addr_test1qrzq6cs7334u2c38qz8flc89yranpe7z93fr84huztknly30m4ay2h2xqe7kzkx3706e0dl2dukrsrfhq848p2qw2w8snk7j0y";
+
+const API = "https://us-central1-space-budz.cloudfunctions.net/api";
 
 let priceInternal;
 
@@ -28,11 +38,10 @@ const Opening = (props) => {
   const [result, setResult] = React.useState(null);
   const [open, setOpen] = React.useState(false);
   const [animation, setAnimation] = React.useState(false);
+  const { visible, setVisible, bindings } = useModal();
 
   const fetchPrice = async () => {
-    const data = await fetch("http://localhost:4000/reserveId").then((res) =>
-      res.json()
-    );
+    const data = await fetch(API + "/reserveId").then((res) => res.json());
     const parsedPrice = data.price && parseInt(data.price);
     if (parsedPrice) {
       setPrice(parsedPrice);
@@ -42,13 +51,12 @@ const Opening = (props) => {
   };
 
   const fetchResult = async (p) => {
-    console.log("http://localhost:4000/result?price=" + p);
-    const data = await fetch(
-      "http://localhost:4000/result?price=" + p
-    ).then((res) => res.json());
+    const data = await fetch(API + "/result?price=" + p).then((res) =>
+      res.json()
+    );
     console.log(data);
+    setResult(data);
     if (data.txHash) {
-      setResult(data);
       setTimeout(() => {
         setAwaitConfirmation("cancel");
         setOpen(false);
@@ -68,7 +76,7 @@ const Opening = (props) => {
       if (priceInternal) {
         fetchResult(priceInternal);
       }
-    }, 6000);
+    }, 3000);
   };
 
   return (
@@ -84,26 +92,64 @@ const Opening = (props) => {
             minHeight: "100vh",
             alignItems: "center",
             display: "flex",
-            justifyContent: "center",
+            marginTop: !matches.md ? 120 : 80,
             flexDirection: "column",
           }}
         >
           {animation ? (
             <>
-              <img src={`../../spacebudz/bud${result.id}.png`} width={300} />
-              <div>Congratulations!</div>
-              <div>
-                <b>SpaceBud #{result.id}</b> will be soon reflected in your
-                wallet.
+              <img
+                src={`../../spacebudz/bud${result.id}.png`}
+                width={!matches.md ? 410 : 350}
+              />
+              <div style={{ fontWeight: 800, fontSize: 22, color: "#777777" }}>
+                Congratulations!
               </div>
-              <div>{result.txHash}</div>
-              <div style={{ height: 20 }} />
+              <div style={{ height: 15 }} />
+              <div style={{ textAlign: "center", maxWidth: 400, width: "90%" }}>
+                <b>SpaceBud #{result.id}</b>
+                <br /> will be soon reflected in your wallet and on the website.
+              </div>
+              <div style={{ height: 5 }} />
+              <div>
+                <Link
+                  style={{ textDecoration: "underline" }}
+                  underline
+                  color="success"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.open(
+                      `https://cardanoscan.io/transaction/${result.txHash}`
+                    );
+                  }}
+                >
+                  View Transaction
+                  <span style={{ fontSize: 11, marginLeft: 4 }}>
+                    (may take a while)
+                  </span>
+                </Link>
+              </div>
+              <div style={{ height: 40 }} />
               <div style={{ display: "flex" }}>
+                <Button
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    minWidth: 50,
+                  }}
+                  bgcolor="#263238"
+                  onClick={() => {
+                    setVisible(true);
+                  }}
+                >
+                  <Share2 size={22} />
+                </Button>
+                <div style={{ width: 20 }} />
                 <Button
                   bgcolor="#263238"
                   onClick={() => {
                     window.open(`/explore/spacebud/${result.id}`);
-                    // navigate();
                   }}
                 >
                   Details
@@ -143,10 +189,17 @@ const Opening = (props) => {
           open={open}
           setOpen={(b) => setOpen(b)}
         />
+        <ShareModal
+          id={result && result.txHash && result.id}
+          modal={{ visible, setVisible, bindings }}
+        />{" "}
       </Layout>
     </>
   );
 };
+
+const toMinutes = (milliseconds) =>
+  parseInt(Math.floor(parseInt(Math.floor(milliseconds / 1000)) / 60));
 
 const PaymentModal = ({ price, open, setOpen, result }) => {
   const [showQr, setShowQr] = React.useState(false);
@@ -173,7 +226,12 @@ const PaymentModal = ({ price, open, setOpen, result }) => {
           >
             <div style={{ fontSize: 12 }}>
               Send <b>exactly</b> the following ADA amount to this address!
-              <br /> This payment request expires in <b>15 minutes</b>.
+              <br /> This payment request expires in{" "}
+              <b>
+                {result ? 15 - toMinutes(Date.now() - result.time) : "15"}{" "}
+                minutes
+              </b>
+              .
             </div>
             <div style={{ height: 30 }} />
             <Snippet
@@ -242,45 +300,5 @@ const PaymentModal = ({ price, open, setOpen, result }) => {
 };
 
 export default Opening;
-
-// query {
-//   utxos(
-//     where: {
-//       _and: [
-//         {
-//           tokens: {
-//             policyId: {
-//               _eq: "dd003135b131f922ff579388f9cfad9cf6ed994eaab42f43c2da8d56"
-//             }
-//           },
-//           transaction: {
-//             inputs:{value:{_eq:"20046470"}}
-//           }
-//         }
-//       ]
-//     }
-//   ) {
-//     tokens {
-//       assetName
-//     }
-//     transaction {
-//       hash
-//     }
-//   }
-// }
-
-// query {
-//   transactions(
-//     where: {
-//       mint: {
-//         policyId: {
-//           _eq: "dd003135b131f922ff579388f9cfad9cf6ed994eaab42f43c2da8d56"
-//         }
-//       }
-//     }
-//   ) {
-// 	mint {assetName}
-//   }
-// }
 
 // https://codepen.io/RoyLee0702/pen/RwNgVya

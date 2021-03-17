@@ -1,12 +1,4 @@
-import { Grid, Input, Link, Modal, Spacer, useModal } from "@geist-ui/react";
-import {
-  mdiFacebook,
-  mdiLink,
-  mdiReddit,
-  mdiShareVariantOutline,
-  mdiTwitter,
-} from "@mdi/js";
-import Icon from "@mdi/react";
+import { Grid, Link, Spacer, useModal } from "@geist-ui/react";
 import React from "react";
 import MiddleEllipsis from "react-middle-ellipsis";
 import { Button } from "../components/Button";
@@ -14,27 +6,52 @@ import { navigate } from "gatsby";
 import { useBreakpoint } from "gatsby-plugin-breakpoints";
 import Metadata from "../components/Metadata";
 import styled from "styled-components";
+import { ShareModal } from "../components/Modal";
 
 import Layout from "./layout";
 
 //assets
 import Show from "../images/assets/show.svg";
-
-const sampleAddr =
-  "addr1q88auysv8uale3unvnk2s9xrwqqxf2dzs7wpyut6g3xzuwlnhh356yzp7k3qwmhe4fk0g5u6kx5ka4rz5qcq4j7mvh2swy44jn";
+import { Share2 } from "@geist-ui/react-icons";
 
 const SpaceBud = ({ pageContext: { spacebud } }) => {
   const matches = useBreakpoint();
-  const [data, setData] = React.useState("");
+  const [owner, setOwner] = React.useState("");
   const { visible, setVisible, bindings } = useModal();
 
-  const fetchData = () => {
-    const data = {
-      id: spacebud.id,
-      gadgets: spacebud.gadgets,
-      name: spacebud.name,
-    };
-    setData(data);
+  const fetchData = async () => {
+    const result = await fetch("https://graphql-api.testnet.dandelion.link/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        query: `query {
+          utxos(
+            where: {
+              tokens: {
+                _and : [
+                  { policyId: {
+                  _eq: "6bf5d009ce1a5b58cc661a887255495404c00c8992f544dac8961033"
+                  }},
+                  {assetName:{_eq: "SpaceBud${spacebud.id}"}}
+                ]
+               
+              }
+            }
+          ) {
+           address
+          }
+        }`,
+      }),
+    }).then((r) => r.json());
+    const token = result.data.utxos;
+    console.log(token);
+    if (token.length > 0) {
+      setOwner(token[0].address);
+      return true;
+    } else return setTimeout(() => fetchData(), 2000);
   };
 
   React.useEffect(() => {
@@ -76,9 +93,7 @@ const SpaceBud = ({ pageContext: { spacebud } }) => {
               color: "white",
             }}
           >
-            <Icon
-              path={mdiShareVariantOutline}
-              size={1.2}
+            <div
               style={{
                 zIndex: 1,
                 position: "absolute",
@@ -87,9 +102,14 @@ const SpaceBud = ({ pageContext: { spacebud } }) => {
                 cursor: "pointer",
               }}
               onClick={() => setVisible(true)}
-            ></Icon>
+            >
+              <Share2 size={26} />
+            </div>
             {/* Modal Share */}
-            <ShareModal data={data} modal={{ visible, setVisible, bindings }} />
+            <ShareModal
+              id={spacebud.id}
+              modal={{ visible, setVisible, bindings }}
+            />
             {/* Modal Share End */}
             <div
               style={{
@@ -101,11 +121,14 @@ const SpaceBud = ({ pageContext: { spacebud } }) => {
                 // backgroundColor: "white",
               }}
             >
-              <img src={`../../../spacebudz/bud${data.id}.png`} width="100%" />
+              <img
+                src={`../../../spacebudz/bud${spacebud.id}.png`}
+                width="100%"
+              />
             </div>
             <Spacer y={1} />
             <div style={{ fontWeight: 600, fontSize: 30 }}>
-              SpaceBud #{data.id}
+              SpaceBud #{spacebud.id}
             </div>
 
             <LinkName
@@ -145,42 +168,63 @@ const SpaceBud = ({ pageContext: { spacebud } }) => {
                   color="success"
                   onClick={(e) => {
                     e.preventDefault();
-                    navigate(`/profile/${sampleAddr}`);
+                    if (owner)
+                      window.open(`https://cardanoscan.io/address/${owner}`);
                   }}
                 >
-                  {sampleAddr}
+                  {owner ? owner : "Await Tx confirmation..."}
                 </Link>
               </MiddleEllipsis>
             </div>
           </div>
-          <Spacer y={2} />
+          <Spacer y={2.5} />
           <div
             style={{
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              position: "relative",
             }}
           >
+            <div
+              style={{
+                position: "absolute",
+                zIndex: 1,
+                fontSize: 18,
+                fontWeight: 800,
+                background: "black",
+                color: "white",
+                padding: "3px 8px",
+                borderRadius: 20,
+                transform: "rotate(-5deg)",
+              }}
+            >
+              Trading coming soon
+            </div>
             <div>
-              <div style={{ fontSize: 12 }}>Buy now price</div>
+              <div style={{ fontSize: 12, opacity: 0.3 }}>Buy now price</div>
               <Spacer y={0.1} />
-              <div style={{ fontWeight: 500 }}>100.0 ADA</div>
+              <div style={{ fontWeight: 500, opacity: 0.3 }}>100.0 ADA</div>
               <Spacer y={0.1} />
-              <div style={{ fontSize: 12, color: "#777777" }}>10.8 USD</div>
+              <div style={{ fontSize: 12, color: "#777777", opacity: 0.3 }}>
+                10.8 USD
+              </div>
             </div>
             <Spacer x={1} />
-            <Button>Buy</Button>
+            <Button style={{ opacity: 0.3 }}>Buy</Button>
             <Spacer x={0.4} />
-            <Button bgcolor="#263238">Make Offer</Button>
+            <Button style={{ opacity: 0.3 }} bgcolor="#263238">
+              Make Offer
+            </Button>
           </div>
-          <Spacer y={1.5} />
+          <Spacer y={2} />
           <div style={{ fontSize: 26, color: "#777777", fontWeight: 600 }}>
             Gadgets
           </div>
           <Spacer y={0.5} />
           <div
             style={{
-              width: 350,
+              width: 250,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -194,84 +238,23 @@ const SpaceBud = ({ pageContext: { spacebud } }) => {
                 justifyContent: "center",
               }}
             >
-              {spacebud.gadgets.map((gadget) => (
-                <Attribute
-                  onClick={() => navigate(`/explore/?search=${gadget}`)}
-                >
-                  {gadget}
-                </Attribute>
-              ))}
+              {spacebud.gadgets.length > 0 ? (
+                spacebud.gadgets.map((gadget, index) => (
+                  <Attribute
+                    key={index}
+                    onClick={() => navigate(`/explore/?search=${gadget}`)}
+                  >
+                    {gadget}
+                  </Attribute>
+                ))
+              ) : (
+                <div style={{ fontSize: 14, opacity: 0.3 }}>No Gadgets</div>
+              )}
             </Grid.Container>
           </div>
         </div>
       </Layout>
     </>
-  );
-};
-
-const ShareModal = (props) => {
-  return (
-    <Modal {...props.modal.bindings} open={props.modal.visible}>
-      <Modal.Title>Share</Modal.Title>
-      <Modal.Subtitle>SpaceBud #{props.data.id}</Modal.Subtitle>
-      <Modal.Content
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "column",
-        }}
-      >
-        <div
-          style={{ width: 300, height: 300, marginTop: -30, marginBottom: -30 }}
-        >
-          <img
-            src={`../../../spacebudz/bud${props.data.id}.png`}
-            width="100%"
-          />
-        </div>
-
-        <Spacer y={1} />
-        <Input
-          onFocus={(e) => e.target.select()}
-          readOnly={true}
-          value={`https://space-budz.web.app/explore/spacebud/${props.data.id}`}
-          iconRight={<Icon path={mdiLink} size={1} />}
-        ></Input>
-      </Modal.Content>
-      <Modal.Action
-        passive
-        onClick={() =>
-          window.open(
-            `https://twitter.com/intent/tweet?text=Check%20out%20SpaceBud%20%23${props.data.id}!%0A&url=${window.location.href}`
-          )
-        }
-      >
-        <Icon path={mdiTwitter} size={1} />
-      </Modal.Action>
-      <Modal.Action
-        passive
-        onClick={() =>
-          window.open(
-            "https://www.facebook.com/sharer/sharer.php?u=" +
-              encodeURIComponent(window.location.href),
-            "facebook-share-dialog"
-          )
-        }
-      >
-        <Icon path={mdiFacebook} size={1} />
-      </Modal.Action>
-      <Modal.Action
-        passive
-        onClick={() =>
-          window.open(
-            `http://www.reddit.com/submit?url=${window.location.href}&title=Check%20out%20SpaceBud%20%23${props.data.id}!`
-          )
-        }
-      >
-        <Icon path={mdiReddit} size={1} />
-      </Modal.Action>
-    </Modal>
   );
 };
 
@@ -298,7 +281,7 @@ const Attribute = (props) => {
             display: "table",
             height: 20,
             backgroundColor: "#9575cd",
-            padding: "2px 5px",
+            padding: "3px 6px",
             borderRadius: 25,
             fontSize: 14,
             color: "white",

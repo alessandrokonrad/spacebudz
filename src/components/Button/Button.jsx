@@ -22,8 +22,8 @@ const Button = (props) => {
         textAlign: "center",
         verticalAlign: "middle",
         lineHeight: "45px",
-
         zoom: matches.md && "0.85",
+        ...props.style,
       }}
     >
       {props.children}

@@ -2,51 +2,35 @@ import React from "react";
 import Headroom from "react-headroom";
 import { Search, setFilter } from "../components/Filter";
 import InfiniteGrid from "../components/InfiniteGrid";
-import { Checkbox, Grid, Spacer } from "@geist-ui/react";
+import { Checkbox, Grid, Loading, Spacer } from "@geist-ui/react";
 import { FloatingButton } from "../components/Button";
 import { ChevronDown, ChevronUp } from "@geist-ui/react-icons";
 
 import Layout from "./layout";
 import Metadata from "../components/Metadata";
 
+let fullList = [];
+
+function hex2a(hexx) {
+  var hex = hexx.split("\\x")[1].toString(); //force conversion
+  var str = "";
+  for (var i = 0; i < hex.length && hex.substr(i, 2) !== "00"; i += 2)
+    str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+  return str;
+}
+
 const Explore = ({ pageContext: { spacebudz }, location }) => {
-  // const data = useStaticQuery(
-  //   graphql`
-  //     query {
-  //       allFile(
-  //         filter: {
-  //           extension: { regex: "/(jpeg|jpg|gif|png|svg)/" }
-  //           relativeDirectory: { eq: "spacebudz" }
-  //         }
-  //       ) {
-  //         edges {
-  //           node {
-  //             childImageSharp {
-  //               fluid(maxWidth: 1000, quality: 100) {
-  //                 ...GatsbyImageSharpFluid
-  //               }
-  //             }
-  //           }
-  //         }
-  //       }
-  //     }
-  //   `
-  // );
+  // const fullList = spacebudz.map((bud) => ({ ...bud }));
 
-  // const image = (id) =>
-  //   data.allFile.edges.find((a) =>
-  //     a.node.childImageSharp.fluid.src.includes(`sample${id}.png`)
-  //   ).node.childImageSharp.fluid;
-
-  const fullList = spacebudz.map((bud) => ({ ...bud }));
-
-  const [array, setArray] = React.useState(fullList);
+  // const [array, setArray] = React.useState(fullList);
+  const [array, setArray] = React.useState([]);
   const [filters, setFilters] = React.useState({
     price: null,
     search: null,
     forSale: false,
   });
   const [param, setParam] = React.useState("");
+  const [loading, setLoading] = React.useState(true);
 
   const setColor = (order, up = true) => {
     if (order == null) return "#b5b5b5";
@@ -56,18 +40,65 @@ const Explore = ({ pageContext: { spacebudz }, location }) => {
     if (order == "DESC" && !up) return "black";
   };
 
-  React.useEffect(() => {
+  const applySearch = () => {
     const urlParams = new URLSearchParams(location.search);
     const search = urlParams.get("search");
+
     if (search) {
+      setLoading(true);
       setParam(search);
       setTimeout(() => {
         const f = filters;
         f.search = search;
         setFilter(fullList, setArray, f);
         setFilters(f);
+        setLoading(false);
       });
     }
+  };
+
+  const fetchData = async () => {
+    const result = await fetch("https://graphql-api.testnet.dandelion.link/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        query: `query {
+      utxos(
+        where: {
+          tokens: {
+            policyId: {
+              _eq: "6bf5d009ce1a5b58cc661a887255495404c00c8992f544dac8961033"
+            }
+          }
+        }
+      ) {
+       address, tokens {assetName, policyId, quantity}
+      }
+    }`,
+      }),
+    }).then((r) => r.json());
+    const tokens = result.data.utxos
+      .map((item) =>
+        item.tokens.map((t) => {
+          const id = hex2a(t.assetName).split("SpaceBud")[1];
+          return {
+            ...spacebudz[id],
+          };
+        })
+      )
+      .reduce((asset, acc) => asset.concat(acc), []);
+    console.log(tokens);
+    fullList = tokens;
+    setArray(tokens);
+    applySearch();
+    setLoading(false);
+  };
+
+  React.useEffect(() => {
+    fetchData();
   }, []);
 
   return (
@@ -264,7 +295,11 @@ const Explore = ({ pageContext: { spacebudz }, location }) => {
                 marginBottom: 100,
               }}
             >
-              {array && <InfiniteGrid array={array} />}
+              {loading ? (
+                <Loading size="large" type="success" />
+              ) : (
+                array && <InfiniteGrid array={array} />
+              )}
             </div>
           </div>
         </div>

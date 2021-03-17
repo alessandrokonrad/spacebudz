@@ -1,12 +1,12 @@
 import React from "react";
-import { LaunchButton } from "../components/Button";
+import { Button, LaunchButton } from "../components/Button";
 import { Grid, Spacer } from "@geist-ui/react";
 
 import Layout from "../templates/layout";
 import Metadata from "../components/Metadata";
 
 //assets
-import Wallpaper from "../images/assets/wallpaper.png";
+import Preview1 from "../images/assets/preview1.png";
 import BuySellIcon from "../images/assets/buysell.svg";
 import CollectHoldIcon from "../images/assets/collecthold.svg";
 import ShareGiftIcon from "../images/assets/sharegift.svg";
@@ -16,9 +16,15 @@ import { useBreakpoint } from "gatsby-plugin-breakpoints";
 import { graphql, useStaticQuery } from "gatsby";
 import BackgroundImage from "gatsby-background-image";
 import styled from "styled-components";
+import { X } from "@geist-ui/react-icons";
+import FadeIn from "react-fade-in";
 
 const Landing = (props) => {
   const matches = useBreakpoint();
+  const [disclaimer, setDisclaimer] = React.useState(false);
+  React.useEffect(() => {
+    setTimeout(() => setDisclaimer(true), 1500);
+  }, []);
 
   return (
     <>
@@ -139,7 +145,7 @@ const Landing = (props) => {
                             fontWeight: "bold",
                           }}
                         >
-                          1000 SpaceBudz are out there, what are you waiting
+                          10,000 SpaceBudz are out there, what are you waiting
                           for!
                         </div>
                       </div>
@@ -206,6 +212,61 @@ const Landing = (props) => {
           </div>
           <Spacer y={3} />
         </div>
+        {disclaimer && (
+          <div
+            style={{
+              position: "fixed",
+              bottom: -60,
+              width: "90%",
+              maxWidth: 450,
+              height: 200,
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              zIndex: 10,
+              // border: "solid #777777 2px",
+            }}
+          >
+            <FadeIn>
+              <div
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  background: "white",
+                  borderRadius: 16,
+                  position: "relative",
+                }}
+              >
+                <div
+                  style={{
+                    position: "absolute",
+                    right: 10,
+                    top: 10,
+                    cursor: "pointer",
+                  }}
+                  onClick={() => setDisclaimer(false)}
+                >
+                  <X size={20} />
+                </div>
+                <img src={Preview1} width={200} />
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <div style={{ fontWeight: 500 }}>Get your SpaceBud now!</div>
+                  <div style={{ height: 20 }} />
+                  <Button onClick={() => navigate("/opening")}>Get It</Button>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+        )}
       </Layout>
     </>
   );

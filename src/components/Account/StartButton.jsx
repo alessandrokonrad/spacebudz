@@ -3,6 +3,7 @@ import Background from "../../images/assets/startButton.svg";
 import style from "./StartButton.module.css";
 
 import { useBreakpoint } from "gatsby-plugin-breakpoints";
+import { navigate } from "gatsby-link";
 
 const StartButton = (props) => {
   const matches = useBreakpoint();
@@ -24,8 +25,9 @@ const StartButton = (props) => {
 
         zoom: matches.md && "0.85",
       }}
+      onClick={() => navigate("/opening")}
     >
-      Start
+      Buy
     </div>
   );
 };
