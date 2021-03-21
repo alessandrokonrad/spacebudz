@@ -62,8 +62,8 @@ const SpaceBud = ({ pageContext: { spacebud } }) => {
     <>
       <Metadata
         titleTwitter="SpaceBudz: Collectible Astronauts"
-        title={"SpaceBudz | SpaceBud#" + spacebud.id}
-        description={`SpaceBud#${spacebud.id}`}
+        title={"SpaceBudz | SpaceBud #" + spacebud.id}
+        description={`SpaceBud #${spacebud.id}`}
         image={`/spacebudz/bud${spacebud.id}.png`}
       />
       <Layout>
@@ -132,9 +132,9 @@ const SpaceBud = ({ pageContext: { spacebud } }) => {
             </div>
 
             <LinkName
-              onClick={() => navigate(`/explore/?search=${spacebud.name}`)}
+              onClick={() => navigate(`/explore/?search=${spacebud.type}`)}
             >
-              {spacebud.name} Astronaut
+              {spacebud.type} Astronaut
             </LinkName>
           </div>
           <Spacer y={1} />

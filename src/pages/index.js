@@ -18,6 +18,8 @@ import BackgroundImage from "gatsby-background-image";
 import styled from "styled-components";
 import { X } from "@geist-ui/react-icons";
 import FadeIn from "react-fade-in";
+import Icon from "@mdi/react";
+import { mdiDiscord, mdiTelegram, mdiTwitter } from "@mdi/js";
 
 const Landing = (props) => {
   const matches = useBreakpoint();
@@ -145,7 +147,7 @@ const Landing = (props) => {
                             fontWeight: "bold",
                           }}
                         >
-                          10,000 SpaceBudz are out there, what are you waiting
+                          10,000 SpaceBudz are out there. What are you waiting
                           for!
                         </div>
                       </div>
@@ -195,22 +197,78 @@ const Landing = (props) => {
                 <div style={{ fontSize: 32 }}>What is SpaceBudz?</div>
                 <Spacer y={1} />
                 <div
-                  style={{ fontWeight: "350", maxWidth: 370, lineHeight: 1.8 }}
+                  style={{
+                    fontWeight: 350,
+                    maxWidth: 500,
+                    lineHeight: 1.8,
+                    fontSize: 18,
+                  }}
                 >
-                  SpaceBudz is a platform on the Cardano blockchain, where each
-                  SpaceBud is represented as a unique token. SpaceBudz is a
-                  platform on the Cardano blockchain, where each SpaceBud.
+                  SpaceBudz is an NFT platform on the Cardano blockchain. 10,000
+                  SpaceBudz are in existence and each astronaut is unique and
+                  only owned by you. Animals, robots and other mysterious
+                  creatures with different features and properties await you!
                 </div>
               </div>
             </div>
             {/* How It Works */}
-            <Spacer y={5} />
-            <div style={{ fontSize: 32 }}>How It Works</div>
+            <Spacer y={4.5} />
+            <div style={{ fontSize: 32 }}>Why get a SpaceBud?</div>
+            <Spacer y={0.7} />
+            <div
+              style={{
+                textAlign: "center",
+                fontWeight: 350,
+                maxWidth: 600,
+                width: "90%",
+                fontSize: 18,
+                lineHeight: 1.8,
+              }}
+            >
+              NFTs fundamentally change how people can collect and trade art. We
+              strongly believe that it's here to stay. Everyone can build up a
+              digital collection and share it with others. SpaceBudz leverages
+              this experience with the use of the Cardano multi asset ledger.
+            </div>
+
             {/* Contact */}
-            <Spacer y={5} />
+            <Spacer y={4.5} />
             <div style={{ fontSize: 32 }}>Still clueless?</div>
+            <Spacer y={0.5} />
+            <div style={{ fontWeight: "350" }}>Reach out to us on</div>
+            <Spacer y={0.7} />
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "#777777",
+              }}
+            >
+              <Icon
+                style={{ cursor: "pointer" }}
+                onClick={() => window.open("https://twitter.com/spacebudzNFT")}
+                path={mdiTwitter}
+                size={1.2}
+              />
+              <Spacer x={1} />
+              <Icon
+                style={{ cursor: "pointer" }}
+                onClick={() => window.open("https://t.me/spacebudz")}
+                path={mdiTelegram}
+                size={1.2}
+              />
+              <Spacer x={1} />
+
+              <Icon
+                style={{ cursor: "pointer" }}
+                onClick={() => {}}
+                path={mdiDiscord}
+                size={1.2}
+              />
+            </div>
           </div>
-          <Spacer y={3} />
+          <Spacer y={4} />
         </div>
         {disclaimer && (
           <div

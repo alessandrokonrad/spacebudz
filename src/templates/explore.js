@@ -2,14 +2,19 @@ import React from "react";
 import Headroom from "react-headroom";
 import { Search, setFilter } from "../components/Filter";
 import InfiniteGrid from "../components/InfiniteGrid";
-import { Checkbox, Grid, Loading, Spacer } from "@geist-ui/react";
-import { FloatingButton } from "../components/Button";
-import { ChevronDown, ChevronUp } from "@geist-ui/react-icons";
+import { Grid, Loading, Spacer } from "@geist-ui/react";
+import { Button, FloatingButton } from "../components/Button";
+import { X } from "@geist-ui/react-icons";
 
 import Layout from "./layout";
 import Metadata from "../components/Metadata";
+import FadeIn from "react-fade-in";
 
-let fullList = [];
+//assets
+import Preview1 from "../images/assets/preview1.png";
+import { navigate } from "gatsby-link";
+
+// let fullList = [];
 
 function hex2a(hexx) {
   var hex = hexx.split("\\x")[1].toString(); //force conversion
@@ -20,10 +25,15 @@ function hex2a(hexx) {
 }
 
 const Explore = ({ pageContext: { spacebudz }, location }) => {
-  // const fullList = spacebudz.map((bud) => ({ ...bud }));
+  const [disclaimer, setDisclaimer] = React.useState(false);
+  React.useEffect(() => {
+    setTimeout(() => setDisclaimer(true), 1500);
+  }, []);
 
-  // const [array, setArray] = React.useState(fullList);
-  const [array, setArray] = React.useState([]);
+  const fullList = spacebudz.map((bud) => ({ ...bud }));
+
+  const [array, setArray] = React.useState(fullList);
+  // const [array, setArray] = React.useState([]);
   const [filters, setFilters] = React.useState({
     price: null,
     search: null,
@@ -75,24 +85,31 @@ const Explore = ({ pageContext: { spacebudz }, location }) => {
           }
         }
       ) {
-       address, tokens {assetName, policyId, quantity}
+      tokens {assetName, policyId}
       }
     }`,
       }),
     }).then((r) => r.json());
+    console.log(result);
+
     const tokens = result.data.utxos
-      .map((item) =>
-        item.tokens.map((t) => {
-          const id = hex2a(t.assetName).split("SpaceBud")[1];
-          return {
-            ...spacebudz[id],
-          };
-        })
+      .map((utxo) => utxo.tokens)
+      .reduce((asset, acc) => asset.concat(acc), [])
+      .filter(
+        (token) =>
+          token.policyId ==
+          "6bf5d009ce1a5b58cc661a887255495404c00c8992f544dac8961033"
       )
-      .reduce((asset, acc) => asset.concat(acc), []);
+      .map((token) => {
+        const id = hex2a(token.assetName).split("SpaceBud")[1];
+        return {
+          ...spacebudz[id],
+        };
+      });
+
     console.log(tokens);
-    fullList = tokens;
-    setArray(tokens);
+    // fullList = tokens;
+    // setArray(tokens);
     applySearch();
     setLoading(false);
   };
@@ -213,22 +230,34 @@ const Explore = ({ pageContext: { spacebudz }, location }) => {
                   gap={1}
                   style={{ width: "100%", maxWidth: 550 }}
                 >
-                  <Grid xs={24} md={8}>
-                    <div style={{ width: "100%", textAlign: "center" }}>
-                      <b style={{ fontSize: 16 }}>Total SpaceBudz:</b>{" "}
-                      {array && array.length}
-                    </div>
-                  </Grid>
-                  <Grid xs={24} md={16}>
+                  <Grid xs={24} md={12}>
                     <div
                       style={{
-                        width: "100%",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
+                        textAlign: "center",
                       }}
                     >
-                      <div style={{ width: "100%", textAlign: "end" }}>
+                      <b style={{ fontSize: 16, color: "#777777" }}>
+                        Total SpaceBudz:
+                      </b>{" "}
+                      {fullList.length.toLocaleString()} / 10,000
+                    </div>
+                  </Grid>
+                  <Grid xs={24} md={12}>
+                    <div
+                      style={{
+                        display: "flex",
+                        // alignItems: "center",
+                        // justifyContent: "center",
+                        textAlign: "center",
+                      }}
+                    >
+                      <div style={{ width: "100%" }}>
+                        <b style={{ color: "#777777", fontSize: 16 }}>
+                          Result:{" "}
+                        </b>
+                        {array ? array.length.toLocaleString() : 0}
+                      </div>
+                      {/* <div style={{ width: "100%", textAlign: "end" }}>
                         <Checkbox
                           onChange={(e) => {
                             const f = filters;
@@ -283,7 +312,7 @@ const Explore = ({ pageContext: { spacebudz }, location }) => {
                           <div style={{ width: 3 }} />
                           <b style={{ fontSize: 16 }}>Price</b>
                         </div>
-                      </div>
+                        </div> */}
                     </div>
                   </Grid>
                 </Grid.Container>
@@ -303,6 +332,61 @@ const Explore = ({ pageContext: { spacebudz }, location }) => {
             </div>
           </div>
         </div>
+        {disclaimer && (
+          <div
+            style={{
+              position: "fixed",
+              bottom: -60,
+              width: "90%",
+              maxWidth: 450,
+              height: 200,
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              zIndex: 10,
+              // border: "solid #777777 2px",
+            }}
+          >
+            <FadeIn>
+              <div
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  background: "white",
+                  borderRadius: 16,
+                  position: "relative",
+                }}
+              >
+                <div
+                  style={{
+                    position: "absolute",
+                    right: 10,
+                    top: 10,
+                    cursor: "pointer",
+                  }}
+                  onClick={() => setDisclaimer(false)}
+                >
+                  <X size={20} />
+                </div>
+                <img src={Preview1} width={200} />
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <div style={{ fontWeight: 500 }}>Get your SpaceBud now!</div>
+                  <div style={{ height: 20 }} />
+                  <Button onClick={() => navigate("/opening")}>Get It</Button>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+        )}
       </Layout>
     </>
   );

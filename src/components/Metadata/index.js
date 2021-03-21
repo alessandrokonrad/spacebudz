@@ -6,12 +6,12 @@ const Metadata = ({ title, titleTwitter, image, description }) => (
   <Helmet>
     <title>{title}</title>
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@spacebudz" />
+    <meta name="twitter:site" content="@spacebudzNFT" />
     <meta name="twitter:title" content={titleTwitter} />
     <meta name="twitter:description" content={description} />
     <meta
       name="twitter:image"
-      content={`https://space-budz.web.app${image ? image : logo}`}
+      content={`https://spacebudz.io${image ? image : logo}`}
     />
   </Helmet>
 );

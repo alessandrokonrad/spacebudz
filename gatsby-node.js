@@ -6,12 +6,12 @@ const getSpacebudz = () => {
   return Object.keys(metadata).map((id) => {
     const price =
       Math.random() > 0.5 ? Math.floor(Math.random() * 100) + 1 : null;
-    const name = metadata[id].name;
+    const type = metadata[id].type;
     const gadgets = metadata[id].traits;
     return {
       id,
       // price,
-      name,
+      type,
       gadgets,
     };
   });

@@ -64,9 +64,9 @@ class InfiniteGrid extends React.Component {
     startLoading();
 
     const loadVolume =
-      this.props.array.length - this.start <= 10
+      this.props.array.length - this.start <= 50
         ? this.props.array.length - this.start
-        : 10;
+        : 50;
 
     const list = this.state.list;
     const items = this.loadItems((parseFloat(groupKey) || 0) + 1, loadVolume);

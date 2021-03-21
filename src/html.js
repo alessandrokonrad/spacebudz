@@ -25,6 +25,7 @@ export default class HTML extends React.Component {
             href="https://fonts.googleapis.com/css2?family=Heebo:wght@900&display=swap"
             rel="stylesheet"
           />
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
         </head>
         <body {...this.props.bodyAttributes}>
           {this.props.preBodyComponents}

@@ -129,7 +129,8 @@ const Header = (props) => {
                 </Popover.Item>
                 <Popover.Item>
                   <Link
-                    href="#"
+                    href="https://twitter.com/spacebudzNFT"
+                    target="_blank"
                     style={{ display: "flex", alignItems: "center" }}
                   >
                     <Icon path={mdiTwitter} size={0.7} />{" "}
@@ -138,7 +139,8 @@ const Header = (props) => {
                 </Popover.Item>
                 <Popover.Item>
                   <Link
-                    href="#"
+                    href="https://t.me/spacebudz"
+                    target="_blank"
                     style={{ display: "flex", alignItems: "center" }}
                   >
                     <Icon path={mdiTelegram} size={0.7} />{" "}
@@ -148,6 +150,7 @@ const Header = (props) => {
                 <Popover.Item>
                   <Link
                     href="#"
+                    // target="_blank"
                     style={{ display: "flex", alignItems: "center" }}
                   >
                     <Icon path={mdiDiscord} size={0.7} />{" "}
@@ -160,13 +163,6 @@ const Header = (props) => {
                   onClick={() => navigate("/about")}
                 >
                   <span>About</span>
-                </Popover.Item>
-                <Popover.Item line />
-                <Popover.Item
-                  style={{ cursor: "pointer" }}
-                  onClick={() => navigate("/contact")}
-                >
-                  <span>Contact</span>
                 </Popover.Item>
               </>
             }

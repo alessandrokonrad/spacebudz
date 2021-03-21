@@ -1,0 +1,28 @@
+[debug] [2021-03-21T18:04:48.852Z] ----------------------------------------------------------------------
+[debug] [2021-03-21T18:04:48.854Z] Command:       /usr/local/bin/firebase /home/ales-hp/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/bin/firebase deploy
+[debug] [2021-03-21T18:04:48.854Z] CLI Version:   8.17.0
+[debug] [2021-03-21T18:04:48.854Z] Platform:      linux
+[debug] [2021-03-21T18:04:48.855Z] Node Version:  v12.18.1
+[debug] [2021-03-21T18:04:48.855Z] Time:          Sun Mar 21 2021 19:04:48 GMT+0100 (Central European Standard Time)
+[debug] [2021-03-21T18:04:48.855Z] ----------------------------------------------------------------------
+[debug] [2021-03-21T18:04:48.855Z] 
+[debug] [2021-03-21T18:04:48.861Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-03-21T18:04:48.861Z] > authorizing via signed-in user
+[debug] [2021-03-21T18:04:48.862Z] [iam] checking project space-budz for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2021-03-21T18:04:48.864Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-03-21T18:04:48.864Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-03-21T18:04:49.024Z] <<< HTTP RESPONSE 200 {"date":"Sun, 21 Mar 2021 18:04:49 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-03-21T18:04:49.031Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/space-budz:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2021-03-21T18:04:49.862Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 21 Mar 2021 18:04:49 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=626","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-03-21T18:04:49.867Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/space-budz  
+ 
+[debug] [2021-03-21T18:04:50.076Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 21 Mar 2021 18:04:50 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Deploying to 'space-budz'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2021-03-21T18:04:50.088Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/space-budz/versions  
+ {"config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2021-03-21T18:04:51.301Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 21 Mar 2021 18:04:51 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}

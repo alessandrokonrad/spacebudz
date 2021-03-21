@@ -22,7 +22,7 @@ const FAQ = (props) => {
       />
       <Layout>
         <div style={{ minHeight: "100vh" }}>
-          <div style={{ marginTop: 100 }}>Privacy Policy</div>
+          <div style={{ marginTop: 200 }}>FAQ (Coming soon)</div>
         </div>
       </Layout>
     </>

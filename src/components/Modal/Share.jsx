@@ -37,15 +37,10 @@ const ShareModal = (props) => {
         </div>
 
         <Spacer y={1} />
-        {/* <Input
-          onFocus={(e) => e.target.select()}
-          readOnly={true}
-          value={`https://space-budz.web.app/explore/spacebud/${props.id}`}
-          iconRight={<Icon path={mdiLink} size={1} />}
-        ></Input> */}
+
         <Snippet
           width="90%"
-          text={`https://space-budz.web.app/explore/spacebud/${props.id}`}
+          text={`https://spacebudz.io/explore/spacebud/${props.id}`}
           symbol=""
           toastText="Copied Link"
         />

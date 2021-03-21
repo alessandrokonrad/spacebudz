@@ -12,14 +12,16 @@ export const setFilter = (array, setArray, filters) => {
       let result = filtered.find((bud) => bud.id == filters.search);
       filtered = result ? [result] : [];
     } else {
-      let result = filtered.filter(
-        (bud) =>
-          bud.name.toLowerCase().includes(filters.search.toLowerCase()) ||
-          bud.gadgets.some((gadget) =>
-            gadget.toLowerCase().includes(filters.search.toLowerCase())
-          )
-      );
-      filtered = result;
+      filters.search.split("&").forEach((search) => {
+        let result = filtered.filter(
+          (bud) =>
+            bud.type.toLowerCase().includes(search.toLowerCase()) ||
+            bud.gadgets.some((gadget) =>
+              gadget.toLowerCase().includes(search.toLowerCase())
+            )
+        );
+        filtered = result;
+      });
     }
   }
   setArray(null);

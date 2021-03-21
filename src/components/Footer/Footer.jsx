@@ -37,11 +37,10 @@ const Footer = (props) => {
             >
               <div>
                 {/* <Tab>My Profile</Tab> */}
-                <Tab onClick={() => navigate("/expore")}>Explore</Tab>
+                <Tab onClick={() => navigate("/explore")}>Explore</Tab>
                 <Tab onClick={() => navigate("/tutorial")}>How It Works</Tab>
                 <Tab onClick={() => navigate("/FAQ")}>FAQ</Tab>
                 <Tab onClick={() => navigate("/about")}>About</Tab>
-                <Tab onClick={() => navigate("/contact")}>Contact</Tab>
               </div>
             </Grid>
             <Grid
@@ -54,8 +53,16 @@ const Footer = (props) => {
               }}
             >
               <div>
-                <Tab>Twitter</Tab>
-                <Tab>Telegram</Tab>
+                <Tab
+                  onClick={() =>
+                    window.open("https://twitter.com/spacebudzNFT")
+                  }
+                >
+                  Twitter
+                </Tab>
+                <Tab onClick={() => window.open("https://t.me/spacebudz")}>
+                  Telegram
+                </Tab>
                 <Tab>Discord</Tab>
               </div>
             </Grid>
