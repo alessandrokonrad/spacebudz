@@ -20,7 +20,7 @@ const SpaceBud = ({ pageContext: { spacebud } }) => {
   const { visible, setVisible, bindings } = useModal();
 
   const fetchData = async () => {
-    const result = await fetch("https://graphql-api.testnet.dandelion.link/", {
+    const result = await fetch("https://graphql-api.mainnet.dandelion.link/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -33,7 +33,7 @@ const SpaceBud = ({ pageContext: { spacebud } }) => {
               tokens: {
                 _and : [
                   { policyId: {
-                  _eq: "6bf5d009ce1a5b58cc661a887255495404c00c8992f544dac8961033"
+                  _eq: "d5e6bf0500378d4f0da4e8dde6becec7621cd8cbf5cbb9b87013d4cc"
                   }},
                   {assetName:{_eq: "SpaceBud${spacebud.id}"}}
                 ]

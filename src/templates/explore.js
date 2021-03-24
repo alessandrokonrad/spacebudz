@@ -14,7 +14,7 @@ import FadeIn from "react-fade-in";
 import Preview1 from "../images/assets/preview1.png";
 import { navigate } from "gatsby-link";
 
-// let fullList = [];
+let fullList = [];
 
 function hex2a(hexx) {
   var hex = hexx.split("\\x")[1].toString(); //force conversion
@@ -30,10 +30,10 @@ const Explore = ({ pageContext: { spacebudz }, location }) => {
     setTimeout(() => setDisclaimer(true), 1500);
   }, []);
 
-  const fullList = spacebudz.map((bud) => ({ ...bud }));
+  // const fullList = spacebudz.map((bud) => ({ ...bud }));
 
-  const [array, setArray] = React.useState(fullList);
-  // const [array, setArray] = React.useState([]);
+  // const [array, setArray] = React.useState(fullList);
+  const [array, setArray] = React.useState([]);
   const [filters, setFilters] = React.useState({
     price: null,
     search: null,
@@ -68,48 +68,51 @@ const Explore = ({ pageContext: { spacebudz }, location }) => {
   };
 
   const fetchData = async () => {
-    const result = await fetch("https://graphql-api.testnet.dandelion.link/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        query: `query {
-      utxos(
-        where: {
-          tokens: {
-            policyId: {
-              _eq: "6bf5d009ce1a5b58cc661a887255495404c00c8992f544dac8961033"
-            }
-          }
-        }
-      ) {
-      tokens {assetName, policyId}
-      }
-    }`,
-      }),
-    }).then((r) => r.json());
-    console.log(result);
+    // const result = await fetch("https://graphql-api.mainnet.dandelion.link/", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Accept: "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //     query: `query {
+    //   utxos(
+    //     where: {
+    //       tokens: {
+    //         policyId: {
+    //           _eq: "d5e6bf0500378d4f0da4e8dde6becec7621cd8cbf5cbb9b87013d4cc"
+    //         }
+    //       }
+    //     }
+    //   ) {
+    //   tokens {assetName, policyId}
+    //   }
+    // }`,
+    //   }),
+    // }).then((r) => r.json());
+    // console.log(result);
 
-    const tokens = result.data.utxos
-      .map((utxo) => utxo.tokens)
-      .reduce((asset, acc) => asset.concat(acc), [])
-      .filter(
-        (token) =>
-          token.policyId ==
-          "6bf5d009ce1a5b58cc661a887255495404c00c8992f544dac8961033"
-      )
-      .map((token) => {
-        const id = hex2a(token.assetName).split("SpaceBud")[1];
-        return {
-          ...spacebudz[id],
-        };
-      });
+    // const tokens = result.data.utxos
+    //   .map((utxo) => utxo.tokens)
+    //   .reduce((asset, acc) => asset.concat(acc), [])
+    //   .filter(
+    //     (token) =>
+    //       token.policyId ==
+    //       "d5e6bf0500378d4f0da4e8dde6becec7621cd8cbf5cbb9b87013d4cc"
+    //   )
+    //   .map((token) => {
+    //     const id = hex2a(token.assetName).split("SpaceBud")[1];
+    //     return {
+    //       ...spacebudz[id],
+    //     };
+    //   });
+    const API = "https://us-central1-space-budz.cloudfunctions.net/api";
+    let tokens = await fetch(API + "/minted").then((res) => res.json());
+    tokens = tokens.minted.map((id) => spacebudz[id]);
 
     console.log(tokens);
-    // fullList = tokens;
-    // setArray(tokens);
+    fullList = tokens;
+    setArray(tokens);
     applySearch();
     setLoading(false);
   };

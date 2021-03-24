@@ -201,7 +201,7 @@ const Landing = (props) => {
                     fontWeight: 350,
                     maxWidth: 500,
                     lineHeight: 1.8,
-                    fontSize: 18,
+                    fontSize: 17,
                   }}
                 >
                   SpaceBudz is an NFT platform on the Cardano blockchain. 10,000
@@ -221,7 +221,7 @@ const Landing = (props) => {
                 fontWeight: 350,
                 maxWidth: 600,
                 width: "90%",
-                fontSize: 18,
+                fontSize: 17,
                 lineHeight: 1.8,
               }}
             >

@@ -6,8 +6,6 @@ import Layout from "../templates/layout";
 import Metadata from "../components/Metadata";
 
 //assets
-import BudRepresent from "../images/assets/spacebud.svg";
-import { navigate } from "gatsby";
 import { useBreakpoint } from "gatsby-plugin-breakpoints";
 
 const About = (props) => {
@@ -63,7 +61,7 @@ const About = (props) => {
               Policy Id matches the following.
               <p style={{ wordBreak: "break-all" }}>
                 <b>Policy Id: </b>
-                6bf5d009ce1a5b58cc661a887255495404c00c8992f544dac8961033
+                d5e6bf0500378d4f0da4e8dde6becec7621cd8cbf5cbb9b87013d4cc
               </p>
               <p>
                 Find out more about the Policy Id{" "}
