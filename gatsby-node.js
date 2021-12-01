@@ -28,13 +28,13 @@ exports.createPages = async ({ actions: { createPage } }) => {
   // `getPokemonData` is a function that fetches our data
   const spacebudz = getSpacebudz();
   // shuffle(spacebudz);
-  // Create a page that lists all Pokémon.
+  // Create a page that lists all spacebud.
   createPage({
     path: `/explore/`,
     component: require.resolve("./src/templates/explore.js"),
     context: { spacebudz },
   });
-  // Create a page for each Pokémon.
+  // Create a page for each spacebud.
   spacebudz.forEach((spacebud) => {
     createPage({
       path: `/explore/spacebud/${spacebud.id}/`,
